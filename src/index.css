@@ -26,6 +26,7 @@
 /* /Profile */
 
 /* Navbar */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -66,3 +67,5 @@
   justify-content: center;
   height: 90vh;
 }
+
+/* /Navbar */
