@@ -1,5 +1,10 @@
 /* Profile  */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App .profile {
   position: absolute;
   top: 2vh;
@@ -69,3 +74,100 @@
 }
 
 /* /Navbar */
+
+
+
+
+
+
+/* Submissions list items */
+.submissionListItem {
+  background-color: lightgreen;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.submissionListItem .layoutRow {
+  display: grid;
+  grid-template-columns: min-content max-content auto min-content min-content;
+  column-gap: 10px;
+  width: 50vw;
+}
+
+.submissionListItem .layoutRowMobile {
+  display: grid;
+  grid-template-columns: min-content auto;
+  column-gap: 10px;
+  width: 100%;
+}
+
+.submissionListItem .details {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  row-gap: 3px;
+}
+
+.submissionListItem .like {
+  display: grid;
+  grid-template-rows: auto min-content;
+  justify-items: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.submissionListItem button {
+  cursor: pointer;
+  background-color: rgb(180, 250, 180);
+  border: None;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.submissionListItem .icon {
+  width: 32px;
+  height: 32px;
+}
+
+.submissionListItem .subBtnsMobile {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-evenly;
+  justify-items: center;
+  column-gap: 10px;
+  margin-top: 10px;
+}
+
+.submissionListItem .separator {
+  margin: 10px 0;
+  height: 2px;
+  width: 100%;
+  background-color: rgb(180, 250, 180);
+}
+
+.submissionListItem .subBtnsMobile button {
+  width: max-content;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.submissionListItem .like_btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: None;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.submissionListItem .like_icon {
+  width: 26px;
+  height: 26px;
+}
+
+.submissionListItem .like p {
+  font-size: small;
+}
+
+/* END Submissions list items */

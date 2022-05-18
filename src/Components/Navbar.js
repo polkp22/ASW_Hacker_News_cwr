@@ -11,6 +11,7 @@ const Navbar=()=>{
                 <li><Link to="/comments" className="nav-link">MY COMMENTS</Link></li>
                 <li><Link to="/upvotedSubmissions" className="nav-link">MY UPVOTED SUBMISSIONS</Link></li>
                 <li><Link to="/upvotedComments" className="nav-link">MY UPVOTED COMMENTS</Link></li>
+                <li><Link to="/submissionListItem" className="nav-link">Testing submission items</Link></li>
             </ul>
         </nav>
     )
