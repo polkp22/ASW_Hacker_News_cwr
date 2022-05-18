@@ -8,7 +8,7 @@ let PersistenceController;
         }
         instance = this;
         // Properties
-        this.DB_URI = process.env.DB_URI;
+        this.DB_URI = process.env.REACT_APP_DB_URI;
     };
 })();
 
@@ -18,60 +18,49 @@ PersistenceController.prototype.getExampleData = async function() {
     return data;
 }
 
-PersistenceController.prototype.getRequest = async function(endpoint, key, query) {
-    let data = fetch(this.DB_URI + endpoint, {
+PersistenceController.prototype.getRequest = async function(endpoint, query) {
+    let settings = {
         method: 'GET',
         headers: {
-            'api_key': key,
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'api_key': process.env.REACT_APP_API_KEY
         },
         params: query
-    })
-    .then(response => response.json())
-    .catch(err => {
-        console.log("ERROR!" + err);
-    }) 
-
-    return data;
+    };
     
+    let data = await fetch(this.DB_URI + endpoint, settings)
+        .then(response => response.json());
+    return data;
 };
 
-PersistenceController.prototype.postRequest = async function(endpoint, key, params) {
-    try {
-        return fetch(this.DB_URI + endpoint, {
-            method: 'POST',
-            headers: {
-                'api_key': key,
-                'Content-Type': 'application/json'
-            },
-            data: params
-        })
-        .then(response => response.json())
-        .then(json => {
-            return json;
-        })
-    } catch (error) {
-        return error;
-    }
+PersistenceController.prototype.postRequest = async function(endpoint, params) {
+    let settings = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'api_key': process.env.REACT_APP_API_KEY
+        },
+        body: JSON.stringify(params)
+    };
+    
+    let data = await fetch(this.DB_URI + endpoint, settings)
+        .then(response => response.json());
+    return data;
 };
 
-PersistenceController.prototype.putRequest = async function(endpoint, key, params) {
-    try {
-        return fetch(this.DB_URI + endpoint, {
-            method: 'PUT',
-            headers: {
-                'api_key': key,
-                'Content-Type': 'application/json'
-            },
-            data: params
-        })
-        .then(response => response.json())
-        .then(json => {
-            return json;
-        })
-    } catch (error) {
-        return error;
-    }
+PersistenceController.prototype.putRequest = async function(endpoint, params) {
+    let settings = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'api_key': process.env.REACT_APP_API_KEY
+        },
+        data: params
+    };
+    
+    let data = await fetch(this.DB_URI + endpoint, settings)
+        .then(response => response.json());
+    return data;
 };
 
 export default PersistenceController;
