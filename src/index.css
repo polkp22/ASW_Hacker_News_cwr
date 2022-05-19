@@ -1,5 +1,18 @@
 /* Profile  */
 
+* {
+  margin: 0;
+  padding: 0;
+}
+  
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
 .App .profile {
   position: absolute;
   top: 2vh;
@@ -24,52 +37,3 @@
 }
 
 /* /Profile */
-
-/* Navbar */
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 17vw;
-  height: 100vh;
-  background-color: #282c34;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2vw;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.navbar ul li {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #f4efcb;
-  cursor: pointer;
-  margin: 10px;
-}
-
-.navbar ul li a {
-  color: #f4efcb;
-}
-
-/* /Navbar */
-
-/* Global */
-
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-}
-
-/* /Global */
