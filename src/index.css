@@ -60,6 +60,10 @@
   color: #f4efcb;
 }
 
+/* /Navbar */
+
+/* Global */
+
 .App {
   display: flex;
   flex-direction: column;
@@ -68,4 +72,4 @@
   height: 90vh;
 }
 
-/* /Navbar */
+/* /Global */
