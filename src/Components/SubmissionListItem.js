@@ -1,4 +1,5 @@
 import React from 'react';
+import '../assets/css/submissionListItem.css';
 
 class SubmissionListItem extends React.Component {
     constructor(props) {
@@ -36,12 +37,12 @@ class SubmissionListItem extends React.Component {
             if (subType === 'url') {
                 if (!isMobile) {
                     return <a href={this.props.url}><button title='Visit url'>
-                        <img className='icon' src='/assets/link_icon.png' alt='Visit url'/>
+                        <img className='icon' src='/assets/img/link_icon.png' alt='Visit url'/>
                     </button></a>;
                 } else {
                     return <a href={this.props.url}><button title='Visit url'>
                         <h4>Visit site</h4>
-                        <img className='icon' src='/assets/link_icon.png' alt='Visit url'/>
+                        <img className='icon' src='/assets/img/link_icon.png' alt='Visit url'/>
                     </button></a>;
                 }
             }
@@ -51,11 +52,11 @@ class SubmissionListItem extends React.Component {
         const renderUpvoteButton = () => {
             if (subUpvoted) {
                 return <a href='#downvote'><button className='like_btn' title='Downvote' onClick={( )=> this.setState({upvoted: false, points: this.state.points-1})}>
-                    <img className='like_icon' src='/assets/filled_heart_icon.png' alt='Downvote'/>
+                    <img className='like_icon' src='/assets/img/filled_heart_icon.png' alt='Downvote'/>
                 </button></a>;
             } else {
                 return <a href='#upvote'><button className='like_btn' title='Upvote' onClick={( )=> this.setState({upvoted: true, points: this.state.points+1})}>
-                    <img className='like_icon' src='/assets/empty_heart_icon.png' alt='Upvote'/>
+                    <img className='like_icon' src='/assets/img/empty_heart_icon.png' alt='Upvote'/>
                 </button></a>;
             }
         }
@@ -78,7 +79,7 @@ class SubmissionListItem extends React.Component {
                         {renderUrlButton()}
                         <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.id)}>
                             <h4>See comments</h4>
-                            <img className='icon' src='/assets/comment_icon.png' alt='View comments'/>
+                            <img className='icon' src='/assets/img/comment_icon.png' alt='View comments'/>
                         </button>
                     </div>
                 </div>
@@ -98,7 +99,7 @@ class SubmissionListItem extends React.Component {
                         <span></span>
                         {renderUrlButton()}
                         <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.id)}>
-                            <img className='icon' src='/assets/comment_icon.png' alt='View comments'/>
+                            <img className='icon' src='/assets/img/comment_icon.png' alt='View comments'/>
                         </button>
                     </div>
                 </div>
