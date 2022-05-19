@@ -39,7 +39,7 @@ function App() {
             <Route path="/comments" element={<Comments/>} />
             <Route path="/upvotedSubmissions" element={<UpvotedSubmissions/>} />
             <Route path="/upvotedComments" element={<UpvotedComments/>} />
-            <Route path="/submissionListItem" element={<SubmissionListItem 
+            {/* <Route path="/submissionListItem" element={<SubmissionListItem 
               id = '12345'
               googleId = '67890'
               title = 'My first ever submission'
@@ -55,7 +55,7 @@ function App() {
 
               handleCommentClick = {(id)=>{console.log("Show details for submission ", id)}}
               handleAuthorClick = {(googleId) => {console.log("Show profile for user ", googleId)}}
-            />} />
+            />} /> */}
           </Routes>
         </BrowserRouter>
     </div>
