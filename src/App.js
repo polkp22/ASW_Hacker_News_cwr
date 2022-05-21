@@ -12,7 +12,7 @@ import UpvotedComments from './Components/UpvotedComments';
 
 function App() {
 
-  const [/* width */, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(window.innerWidth);
   const handleWindowSizeChange = () => {
           setWidth(window.innerWidth);
   }
@@ -24,7 +24,7 @@ function App() {
       }
   }, []);
 
-  /* const isMobile = (width <= 600); */
+  const isMobile = (width <= 600);
 
   return (
     <div className="App">
