@@ -8,14 +8,11 @@ import Submissions from './Components/Submissions';
 import Comments from './Components/Comments';
 import UpvotedSubmissions from './Components/UpvotedSubmissions';
 import UpvotedComments from './Components/UpvotedComments';
-import SubmissionListItem from './Components/SubmissionListItem';
-//stylesheets
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'boxicons/css/boxicons.min.css';
+/* import SubmissionListItem from './Components/SubmissionListItem'; */
 
 function App() {
 
-  const [width, setWidth] = useState(window.innerWidth);
+  const [/* width */, setWidth] = useState(window.innerWidth);
   const handleWindowSizeChange = () => {
           setWidth(window.innerWidth);
   }
@@ -27,7 +24,7 @@ function App() {
       }
   }, []);
 
-  const isMobile = (width <= 600);
+  /* const isMobile = (width <= 600); */
 
   return (
     <div className="App">
