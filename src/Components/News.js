@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PersistenceController from './Persistence.controller';
+
+//Styles
 import "../assets/css/news.css"
+
 class News extends Component {
     constructor(props) {
         super(props);

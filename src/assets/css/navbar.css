@@ -1,6 +1,6 @@
 /* Navbar */
 
-.navbar {
+.customNavbar {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@
     padding: 0 2vw;
   }
   
-  .navbar ul {
+  .customNavbar ul {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
     justify-content: space-around;
   }
   
-  .navbar ul li {
+  .customNavbar ul li {
     font-size: 1.2rem;
     font-weight: bold;
     color: #f4efcb;
@@ -29,7 +29,7 @@
     margin: 10px;
   }
   
-  .navbar ul li a {
+  .customNavbar ul li a {
     color: #f4efcb;
   }
   
