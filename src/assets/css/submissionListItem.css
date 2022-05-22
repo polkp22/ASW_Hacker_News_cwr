@@ -4,25 +4,71 @@
     padding: 10px;
     margin: 10px 3%;
     width: 94%;
+    overflow-x: hidden;
+  }
 
+  .submissionListItem a {
+    color: black;
+    text-decoration-line: none;
+  }
+
+  .submissionListItem .subItemIdx {
+    align-self: center;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 0;
   }
   
-  .submissionListItem .layoutRow {
+  .submissionListItem .layoutContent {
     display: grid;
-    grid-template-columns: min-content max-content auto min-content min-content;
+    grid-template-columns: auto auto min-content;
     column-gap: 10px;
   }
-  
-  .submissionListItem .layoutRowMobile {
+
+  .submissionListItem .layoutContent .upperContent {
     display: grid;
-    grid-template-columns: min-content auto;
+    grid-template-columns: min-content min-content auto;
     column-gap: 10px;
+  }
+
+  .submissionListItem .layoutContent .separator {
+    visibility: hidden;
+  }
+
+  .submissionListItem .layoutContent .lowerContent {
+    display: grid;
+    grid-template-columns: min-content min-content;
+    column-gap: 10px;
+  }
+
+  .submissionListItem .layoutContent .lowerContent h4 {
+    display: none;
+  }
+
+  .submissionListItem .layoutContent .lowerContent button {
+    cursor: pointer;
+    background-color: rgb(180, 250, 180);
+    border: None;
+    border-radius: 8px;
+    padding: 6px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .submissionListItem .layoutContent .lowerContent button .icon {
+    width: 32px;
+    height: 32px;
+    margin: 5px 5px 0 5px;
   }
   
   .submissionListItem .details {
     display: grid;
     grid-template-rows: min-content min-content;
     row-gap: 3px;
+  }
+
+  .submissionListItem .details a:hover {
+    text-decoration-line: underline;
   }
   
   .submissionListItem .like {
@@ -33,43 +79,6 @@
     margin: 0 10px;
   }
   
-  .submissionListItem button {
-    cursor: pointer;
-    background-color: rgb(180, 250, 180);
-    border: None;
-    border-radius: 8px;
-    padding: 6px;
-  }
-  
-  .submissionListItem .icon {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .submissionListItem .subBtnsMobile {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-evenly;
-    justify-items: center;
-    column-gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .submissionListItem .separator {
-    margin: 10px 0;
-    height: 2px;
-    width: 100%;
-    background-color: rgb(180, 250, 180);
-  }
-  
-  .submissionListItem .subBtnsMobile button {
-    width: max-content;
-    display: grid;
-    grid-template-columns: 60% 40%;
-    align-items: center;
-    column-gap: 10px;
-  }
-  
   .submissionListItem .like_btn {
     cursor: pointer;
     background-color: transparent;
@@ -77,13 +86,63 @@
     border-radius: 8px;
     padding: 0;
     margin: 0;
+    padding-top: 5px;
   }
   
   .submissionListItem .like_icon {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
   }
   
   .submissionListItem .like p {
     font-size: small;
+  }
+
+  @media screen and (max-width: 600px) {
+    .submissionListItem .layoutContent {
+      grid-template-columns: auto;
+      grid-template-rows: min-content auto min-content;
+      row-gap: 2px;
+    }
+
+    .submissionListItem .layoutContent .upperContent {
+      grid-template-columns: min-content min-content auto;
+    }
+  
+    .submissionListItem .layoutContent .separator {
+      visibility: visible;
+      margin: 5px 0 2px;
+      height: 2px;
+      width: 100%;
+      background-color: rgb(180, 250, 180);
+    }
+  
+    .submissionListItem .layoutContent .lowerContent {
+      grid-template-columns: 50% 50%;
+      justify-content: space-between;
+      justify-items: center;
+      column-gap: 10px;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    .submissionListItem .layoutContent .lowerContent button {
+      display: grid;
+      grid-template-columns: auto min-content;
+      align-items: center;
+      justify-content: space-evenly;
+      column-gap: 0;
+      overflow-x: hidden;
+    }
+
+    .submissionListItem .layoutContent .lowerContent a {
+      width: 100%;
+      height: 100%;
+    }
+
+    .submissionListItem .layoutContent .lowerContent h4 {
+      display: contents;
+      height: 100%;
+      text-align: center;
+    }
   }
