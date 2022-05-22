@@ -197,8 +197,8 @@ class Comments extends Component {
         else {
             console.log(comment);
             return(
-              <div>
-                <h3>Comments</h3>
+              <div className="commentPage">
+                <h2>Comments</h2>
                 <ul>
                    {comments.map((com) =>
                     <li><CommentItem>{com}</CommentItem>
