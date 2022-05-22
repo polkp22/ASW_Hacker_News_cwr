@@ -93,7 +93,7 @@ class Profile extends Component {
                                         <div className='infoValue'>1</div>
                                     </div>
                                     <form className='profileForm' onSubmit = {this.handleForm}>
-                                        <div className='info'>
+                                        <div className='info infoAbout'>
                                             <div className='infoTag'>About:</div>
                                             <div className='infoValue'><textarea name="about" rows="4" cols="49"></textarea></div>
                                         </div>
