@@ -38,6 +38,7 @@ body {
   background-color: #11101d;
   padding: 6px 14px;
   transition: all 0.5s ease;
+  z-index: 1;
 }
 
 .sidebar.active {
@@ -256,4 +257,11 @@ main {
 .sidebar.active ~ main {
   width: calc(100% - 300px);
   left: 300px;
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar.active ~ main {
+    width: calc(100% - 78px);
+    left: 78px;
+  }
 }
