@@ -79,7 +79,13 @@ class Navbar extends Component {
                                 </div>
                             </div>
                         </Link>
-                        <RiLogoutBoxLine id="log_out" />
+                        <div className='logout'>
+                            <Link to='/profile'>
+                                <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
+                            </Link>
+                            <span className='tooltip tooltipxxl'>Profile</span>
+                            <RiLogoutBoxLine id="log_out" />
+                        </div>
                     </div>
                 </div>
             </div>
