@@ -1,0 +1,36 @@
+.subPage {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+}
+
+.subPage ul {
+    margin: 0;
+    padding: 0;
+}
+
+.subPage .pageButtons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px;
+    justify-self: center;
+    align-items: center;
+}
+
+
+
+.subPage h4 {
+    text-align: center;
+    margin: 0 15px;
+}
+
+.subPage .pageButtons button {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 190, 0);
+    padding: 2px;
+    margin: 5px;
+    cursor: pointer;
+}
