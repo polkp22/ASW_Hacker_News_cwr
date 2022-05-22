@@ -1,11 +1,15 @@
 import React from 'react';
+import SubmissionPage from './SubmissionPage';
 
-const Submissions=()=>{
-    return(
-        <div className="submissions">
-            <h2>This is the Submissions page</h2>
-        </div>
-    )
+class Submissions extends React.Component {
+    render() {
+        return (
+            <SubmissionPage
+                title = "My Submissions"
+                data_endpoint = "/submissions/user/107232669716225452809"
+            />
+        );
+    }
 }
 
 export default Submissions;
