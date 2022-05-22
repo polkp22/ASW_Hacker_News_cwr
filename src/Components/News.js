@@ -69,7 +69,6 @@ class News extends Component {
         else {
             console.log("news: ", news);
             return(
-
                 <div className='container'>
                     <form onSubmit = {this.handleForm}>
                     <div class="row">

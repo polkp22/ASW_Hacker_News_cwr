@@ -71,12 +71,14 @@ class Navbar extends Component {
                 </ul>
                 <div className='profile_content'>
                     <div className='profile'>
-                        <div className='profile_details'>
-                            <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
-                            <div className='name'>
-                                Example User
+                        <Link to='/profile'>
+                            <div className='profile_details'>
+                                <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
+                                <div className='name'>
+                                    Example User
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                         <RiLogoutBoxLine id="log_out" />
                     </div>
                 </div>

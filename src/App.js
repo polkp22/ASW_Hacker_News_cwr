@@ -38,6 +38,7 @@ function App() {
               <Route path="/comments" element={<Comments/>} />
               <Route path="/upvotedSubmissions" element={<UpvotedSubmissions/>} />
               <Route path="/upvotedComments" element={<UpvotedComments/>} />
+              <Route path="/profile" element={<Profile/>} />
             </Routes>
           </main>
         </BrowserRouter>
