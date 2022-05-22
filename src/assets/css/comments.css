@@ -1,0 +1,119 @@
+/* Style the container */
+.container {
+  align-items: center;
+  border-radius: 5px;
+  background-color: lightgreen;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 20px;
+  padding: 0;
+  padding-left: 30px;
+  padding-bottom: 5px;
+}
+
+ul li {
+  margin-bottom: 0;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
+}
+
+.comment {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .comment .layoutRow {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+    width: 50vw;
+  }
+
+  .comment .layoutRowMobile {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 10px;
+    width: 100%;
+  }
+
+  .comment .like {
+    display: grid;
+    grid-template-rows: auto min-content;
+    justify-items: center;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .comment .details {
+    display: grid;
+    grid-template-rows: auto min-content;
+  }
+
+  .comment .inDetails1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .comment .inDetails2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* .comment .date {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  } */
+
+  .comment a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .comment .button {
+    cursor: pointer;
+    background-color: rgb(180, 250, 180);
+    border: None;
+    border-radius: 8px;
+    padding: 6px;
+  }
+
+  .comment .like_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: None;
+    border-radius: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .comment .like_btn:hover .fa {
+    background-color: hwb(120 37% 38%);
+    color:aqua;
+  }
+
+  .comment .reply_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: None;
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin: 0;
+    transition-duration: 0.4s;
+  }
+
+  .comment .reply_btn:hover {
+    background-color: hwb(120 37% 38%);
+    color:white;
+  }
+
+  .comment .like p {
+    font-size: small;
+  }
