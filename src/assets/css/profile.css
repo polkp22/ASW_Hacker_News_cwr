@@ -28,3 +28,78 @@
     border-radius: 1000px;
     border: 4px solid white;
 }
+.username {
+    margin-top: 100px;
+    text-align: center;
+}
+.profileTitle {
+    font-size: 18px;
+    font-weight: 500;
+}
+.userData {
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+}
+.userDataTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.userInfo, .userActivity {
+    width:50%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: .75em;
+    padding: 20px
+}
+.userInfo {
+    margin: 20px 15px 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.infoTag {
+    min-width: 110px;
+    color: rgb(122, 122, 122);
+}
+.profileForm select {
+    padding: 8px;
+}
+.profileForm input[type=number] {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.profileForm textarea {
+    max-width: 450px;
+}
+.profileForm input[type=submit] {
+    background-color: lightgreen;
+    color: rgb(53, 53, 53);
+    font-weight: 500;
+    padding: 12px 20px;
+    border: none;
+    border-radius: .75em;
+    cursor: pointer;
+}
+.profileForm input[type=submit]:hover {
+    background-color: rgb(53, 53, 53);
+    color: lightgreen;
+}
+.profileButton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.userActivity {
+    margin: 20px 30px 20px 15px;
+    display: none;
+}

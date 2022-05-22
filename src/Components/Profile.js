@@ -8,7 +8,7 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            news: {},
+            info: {},
             isLoaded: false
         };
         this.persistenceController = new PersistenceController();
@@ -19,7 +19,7 @@ class Profile extends Component {
             this.persistenceController.getRequest("/users/107232669716225452809", {})
                 .then(response => {
                     this.setState({
-                        news: response,
+                        info: response,
                         isLoaded: true
                     });
                 })
@@ -62,12 +62,12 @@ class Profile extends Component {
     }
 
     render() {
-        var { isLoaded, news } = this.state;
+        var { isLoaded, info } = this.state;
         if (!isLoaded) {
             return <div>Loading...</div>
         }
         else {
-            console.log("news: ", news);
+            console.log("info: ", info);
             return(
                 <div className='container profilecontainer'>
                     <div className='profileHeader'>
@@ -78,9 +78,67 @@ class Profile extends Component {
                             </div>
                         </div>
                     </div>
-                    {/* <form onSubmit = {this.handleForm}>
-                        <input type="submit" value="Submit"/>
-                    </form> */}
+                    <div className='profileInfo'>
+                        <div className='username'><span className='profileTitle'>@juliahc</span></div>
+                        <div className='userData'>
+                            <div className='userInfo'>
+                                <div>
+                                    <div className='userDataTitle'><span className='profileTitle'>Profile info</span></div>
+                                    <div className='info'>
+                                        <div className='infoTag'>Created:</div>
+                                        <div className='infoValue'>66 days ago</div>
+                                    </div>
+                                    <div className='info'>
+                                        <div className='infoTag'>Karma:</div>
+                                        <div className='infoValue'>1</div>
+                                    </div>
+                                    <form className='profileForm' onSubmit = {this.handleForm}>
+                                        <div className='info'>
+                                            <div className='infoTag'>About:</div>
+                                            <div className='infoValue'><textarea name="about" rows="4" cols="49"></textarea></div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='infoTag'>Showdead:</div>
+                                            <div className='infoValue'>
+                                                <select name="showdead">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">no</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='infoTag'>Noprocrast:</div>
+                                            <div className='infoValue'>
+                                                <select name="noprocrast">
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">no</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='infoTag'>Maxvisit:</div>
+                                            <div className='infoValue'><input type="number" name="maxvisit" value="10"/></div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='infoTag'>Minaway:</div>
+                                            <div className='infoValue'><input type="number" name="minaway" value="180"/></div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='infoTag'>Delay:</div>
+                                            <div className='infoValue'><input type="number" name="delay" value="0"/></div>
+                                        </div>
+                                        <div className='profileButton'>
+                                            <input type="submit" value="Update"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div className='userActivity'>
+                                <div className='userDataTitle'><span className='profileTitle'>Activity</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    {/*  */}
                 </div>
             );
         }
