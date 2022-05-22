@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PersistenceController from './Persistence.controller';
+import {RiMenuFill, RiChat4Line} from 'react-icons/ri';
 
 //Styles
 import "../assets/css/profile.css"
@@ -134,7 +136,17 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className='userActivity'>
-                                <div className='userDataTitle'><span className='profileTitle'>Activity</span></div>
+                                <div>
+                                    <div className='userDataTitle'><span className='profileTitle'>Activity</span></div>
+                                    <Link to="#" className='activity'>
+                                        <div className='activityIcon'><RiMenuFill /></div>
+                                        <div className='activityText'>Submissions</div>
+                                    </Link>
+                                    <Link to="#" className='activity'>
+                                        <div className='activityIcon'><RiChat4Line /></div>
+                                        <div className='activityText'>Comments</div>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
