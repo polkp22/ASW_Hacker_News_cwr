@@ -69,38 +69,18 @@ class Profile extends Component {
         else {
             console.log("news: ", news);
             return(
-
-                <div className='container'>
-                    <form onSubmit = {this.handleForm}>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="title">Title: *</label>
+                <div className='container profilecontainer'>
+                    <div className='profileHeader'>
+                        <div className='profileHeaderGreen'></div>
+                        <div className='profileHeaderImage'>
+                            <div>
+                                <img className='profileImg' src="https://as1.ftcdn.net/v2/jpg/01/88/34/66/1000_F_188346637_7a9h4gqPnag7lekMbJAZNq01MUs7v4Vs.jpg" alt="profile image"/>
+                            </div>
                         </div>
-                        <div class="col-75">
-                            <input type="text" id="title" name="title" placeholder="Insert a title..."/>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-25">
-                            <label for="url">Url</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="url" name="url" placeholder="Url..."/>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-25">
-                            <label for="text">Text</label>
-                        </div>
-                        <div class="col-75">
-                            <textarea name="text" rows="4" cols="49"></textarea>
-                        </div>
-                        </div>
-
-                        <div class="row">
-                            <input type="submit" value="Submit"/>
-                        </div>
-                    </form>
+                    </div>
+                    {/* <form onSubmit = {this.handleForm}>
+                        <input type="submit" value="Submit"/>
+                    </form> */}
                 </div>
             );
         }

@@ -1,0 +1,30 @@
+.profilecontainer {
+    background-color: white !important;
+}
+.profileHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profileHeaderGreen {
+    width: 100%;
+    height: 120px;
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+}
+.profileHeaderImage {
+    display: flex;
+    position:absolute;
+    justify-content: center;
+}
+.profileHeaderImage div {
+    margin-top: 30px;
+    border-radius: 1000px;
+    
+}
+.profileImg {
+    width: 180px;
+    height: 180px;
+    border-radius: 1000px;
+    border: 4px solid white;
+}
