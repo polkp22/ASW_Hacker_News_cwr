@@ -1,3 +1,27 @@
+/* Style the container */
+.container {
+  align-items: center;
+  border-radius: 5px;
+  background-color: lightgreen;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 20px;
+  padding: 0;
+  padding-left: 30px;
+  padding-bottom: 5px;
+}
+
+ul li {
+  margin-bottom: 0;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
+}
+
 .comment {
     background-color: lightgreen;
     border-radius: 10px;
@@ -42,11 +66,11 @@
     justify-content: space-between;
   }
 
-  .comment .date {
+  /* .comment .date {
     float: left;
     width: 75%;
     margin-top: 6px;
-  }
+  } */
 
   .comment a {
     color: inherit;
