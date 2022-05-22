@@ -23,24 +23,24 @@ class SubmissionListItem extends React.Component {
             handleAuthorClick
         */
         this.state = {
-            upvoted: props.upvoted,
-            points: props.points
+            upvoted: props.sub.upvoted,
+            points: props.sub.points
         }
     }
 
     render() {
         const isMobile = this.props.isMobile;
-        const subType = this.props.type;
+        const subType = this.props.sub.type;
         const subUpvoted = this.state.upvoted;
 
         const renderUrlButton = () => {
             if (subType === 'url') {
                 if (!isMobile) {
-                    return <a href={this.props.url}><button title='Visit url'>
+                    return <a href={this.props.sub.url}><button title='Visit url'>
                         <img className='icon' src='/assets/img/link_icon.png' alt='Visit url'/>
                     </button></a>;
                 } else {
-                    return <a href={this.props.url}><button title='Visit url'>
+                    return <a href={this.props.sub.url}><button title='Visit url'>
                         <h4>Visit site</h4>
                         <img className='icon' src='/assets/img/link_icon.png' alt='Visit url'/>
                     </button></a>;
@@ -70,14 +70,14 @@ class SubmissionListItem extends React.Component {
                             <p>{this.state.points}</p>
                         </div>
                         <div className='details'>
-                            <h3>{this.props.title}</h3>
-                            <p>{this.props.username}, {this.props.createdAt}.</p>
+                            <h3>{this.props.sub.title}</h3>
+                            <p>{this.props.sub.username}, {this.props.sub.createdAt}.</p>
                         </div>
                     </div>
                     <div className='separator'/>
                     <div className="subBtnsMobile">
                         {renderUrlButton()}
-                        <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.id)}>
+                        <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.sub.id)}>
                             <h4>See comments</h4>
                             <img className='icon' src='/assets/img/comment_icon.png' alt='View comments'/>
                         </button>
@@ -93,12 +93,12 @@ class SubmissionListItem extends React.Component {
                             <p>{this.state.points}</p>
                         </div>
                         <div className='details'>
-                            <h3>{this.props.title}</h3>
-                            <p>{this.props.username}, {this.props.createdAt}.</p>
+                            <h3>{this.props.sub.title}</h3>
+                            <p>{this.props.sub.username}, {this.props.sub.createdAt}.</p>
                         </div>
                         <span></span>
                         {renderUrlButton()}
-                        <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.id)}>
+                        <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.sub.id)}>
                             <img className='icon' src='/assets/img/comment_icon.png' alt='View comments'/>
                         </button>
                     </div>

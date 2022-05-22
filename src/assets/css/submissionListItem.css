@@ -2,20 +2,21 @@
     background-color: lightgreen;
     border-radius: 10px;
     padding: 10px;
+    margin: 10px 3%;
+    width: 94%;
+
   }
   
   .submissionListItem .layoutRow {
     display: grid;
     grid-template-columns: min-content max-content auto min-content min-content;
     column-gap: 10px;
-    width: 50vw;
   }
   
   .submissionListItem .layoutRowMobile {
     display: grid;
     grid-template-columns: min-content auto;
     column-gap: 10px;
-    width: 100%;
   }
   
   .submissionListItem .details {

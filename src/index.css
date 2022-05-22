@@ -8,11 +8,21 @@
   font-family: 'Poppins', sans-serif;
 }
 
+h2 {
+  margin: 20px;
+  width: auto;
+  text-align: center;
+}
+
 body {
   position: relative;
   min-height: 100vh;
   width:100%;
   overflow: hidden;
+}
+
+.vertical-scroll {
+  overflow-y: scroll;
 }
 
 /* /Global */
