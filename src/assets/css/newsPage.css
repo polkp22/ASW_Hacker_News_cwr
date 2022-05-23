@@ -55,7 +55,31 @@ form .col-75 input {
 }
 
 form #submitForm {
-    color: red;
+    margin-top: 20px;
+    background-color: #1b6f1bc7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    align-self: center;
+}
+
+.popup .close-btn {
+    border: none;
+    background-color: transparent;
+    color: rgb(169, 23, 23);
+    font-size: 30px;
+    cursor: pointer;
+    height: 30px;
+}
+
+.reduceText {
+    font-size: 12px;
+    color: #fff;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 500px) {

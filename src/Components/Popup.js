@@ -2,13 +2,14 @@ import React from 'react'
 import '../assets/css/popup.css'
 
 function Popup(props) {
-  return (props.trigger) ? (
-    <div className='popup'>
-        <div className='popup-inner'>
+  let show = props.trigger;
+  return (
+    <div className={`popup ${show ? "show" : "occult"}`}>
+        <div className={`popup-inner ${show ? "show" : "occult"}`}>
             {props.children}
         </div>
     </div>
-  ) : "";
+  )
 }
 
 export default Popup
