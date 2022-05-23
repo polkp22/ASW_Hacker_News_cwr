@@ -23,15 +23,12 @@ class Profile extends Component {
     }
 
     loadProfilePage() {
-        //let userId = "108072218470064233500"; //logged
-        let userId = "107232669716225452809"; //no logged
-        this.persistenceController.getRequest("/users/"+userId, {})
+        this.persistenceController.getRequest("/users/"+this.props.id, {})
             .then(response => {
                 this.setState({
                     info: response,
                     isLoaded: true,
                     logged: ("apiKey" in response) ? true : false,
-                    id: userId,
                     about: response.about,
                     maxvisit: response.maxvisit,
                     minaway:response.minaway,
@@ -62,7 +59,7 @@ class Profile extends Component {
             if (entry[1] !== "") params[entry[0]] = entry[1];
         }
         //post the new submission
-        this.persistenceController.putRequest("/users/"+this.state.id, params)
+        this.persistenceController.putRequest("/users/"+this.props.id, params)
             .then(response => {
                 this.setState({
                     info: response,
@@ -163,7 +160,7 @@ class Profile extends Component {
                         <div className='profileHeaderGreen'></div>
                         <div className='profileHeaderImage'>
                             <div>
-                                <img className='profileImg' src="https://as1.ftcdn.net/v2/jpg/01/88/34/66/1000_F_188346637_7a9h4gqPnag7lekMbJAZNq01MUs7v4Vs.jpg" alt="profile image"/>
+                                <img className='profileImg' src="https://as1.ftcdn.net/v2/jpg/01/88/34/66/1000_F_188346637_7a9h4gqPnag7lekMbJAZNq01MUs7v4Vs.jpg" alt="profile"/>
                             </div>
                         </div>
                     </div>
@@ -187,11 +184,11 @@ class Profile extends Component {
                             <div className='userActivity' style={{display: logged ? "none" : "flex"}}>
                                 <div>
                                     <div className='userDataTitle'><span className='profileTitle'>Activity</span></div>
-                                    <Link to="#" className='activity'>
+                                    <Link to={"/submissions/user/"+this.props.id} className='activity'>
                                         <div className='activityIcon'><RiMenuFill /></div>
                                         <div className='activityText'>Submissions</div>
                                     </Link>
-                                    <Link to="#" className='activity'>
+                                    <Link to={"/comments/"+this.props.id} className='activity'>
                                         <div className='activityIcon'><RiChat4Line /></div>
                                         <div className='activityText'>Comments</div>
                                     </Link>

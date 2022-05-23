@@ -6,7 +6,7 @@ import {MdOutlineForum, MdOutlineArrowForwardIos} from 'react-icons/md';
 import {RiHomeLine, RiMenuFill, RiChatHeartLine, RiHeart3Line, RiChat4Line, RiLogoutBoxLine} from 'react-icons/ri';
 
 class Navbar extends Component {
-    
+
     handleBtnClick = () => {
         let sidebar = document.getElementsByClassName("sidebar")[0];
         sidebar.classList.toggle("active");
@@ -41,14 +41,14 @@ class Navbar extends Component {
                         <span className='tooltip'>Threads</span>
                     </li>
                     <li>
-                        <Link to='/submissions'>
+                        <Link to={'/submissions/user/'+this.props.user}>
                         <RiMenuFill />
                             <span className='links_name'>My Submissions</span>
                         </Link>
                         <span className='tooltip'>My Submissions</span>
                     </li>
                     <li>
-                        <Link to='/comments'>
+                        <Link to={'/comments/'+this.props.user}>
                         <RiChat4Line />
                             <span className='links_name'>My Comments</span>
                         </Link>
@@ -71,7 +71,7 @@ class Navbar extends Component {
                 </ul>
                 <div className='profile_content'>
                     <div className='profile'>
-                        <Link to='/profile'>
+                        <Link to={'/profile/'+this.props.user}>
                             <div className='profile_details'>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                                 <div className='name'>
@@ -80,7 +80,7 @@ class Navbar extends Component {
                             </div>
                         </Link>
                         <div className='logout'>
-                            <Link to='/profile'>
+                            <Link to={'/profile/'+this.props.user}>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                             </Link>
                             <span className='tooltip tooltipxxl'>Profile</span>
