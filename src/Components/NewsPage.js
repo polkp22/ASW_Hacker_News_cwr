@@ -1,6 +1,7 @@
 import React from 'react';
 import SubmissionListItem from './SubmissionListItem';
 import '../assets/css/submissionPage.css';
+import '../assets/css/newsPage.css';
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io';
 import PersistenceController from './Persistence.controller';
 import Popup from './Popup';
@@ -135,7 +136,7 @@ class News extends React.Component {
                         <button className='close-btn' onClick={() => {this.setState({buttonPopup: false});}}>
                             close
                         </button>
-                        <div className=''>
+                        <div className='formContainer'>
                             <form onSubmit = {this.handleForm}>
                                 <div class="row">
                                     <div class="col-25">
@@ -163,7 +164,7 @@ class News extends React.Component {
                                 </div>
 
                                 <div class="row">
-                                    <input type="submit" value="Submit"/>
+                                    <input id="submitForm" type="submit" value="Submit"/>
                                 </div>
                             </form>
                         </div>
