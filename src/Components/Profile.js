@@ -24,8 +24,6 @@ class Profile extends Component {
     }
 
     loadProfilePage() {
-        
-        
         //let userId = "108072218470064233500"; //logged
         let userId = "107232669716225452809"; //no logged
         this.persistenceController.getRequest("/users/"+userId, {})
@@ -80,10 +78,6 @@ class Profile extends Component {
             .catch(error => {
                 console.log("error", error);
             });
-    }
-
-    dateFormat = () => {
-
     }
 
     render() {
