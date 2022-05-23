@@ -4,7 +4,7 @@ import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import {MdOutlineForum} from 'react-icons/md';
 import {BiLink} from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-const time_ago = require("../utils/timeAgo");
+import time_ago from '../utils/timeAgo';
 
 class SubmissionListItem extends React.Component {
     constructor(props) {
@@ -69,7 +69,7 @@ class SubmissionListItem extends React.Component {
                             <BiLink className='icon' alt='Visit site'/>
                         </button></a>
                         <Link to={"/submissions/"+this.props.sub.id}>
-                            <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.sub.id)}>
+                            <button title='View comments'>
                                 <h4>See comments</h4>
                                 <MdOutlineForum className='icon' alt='View comments'/>
                             </button>

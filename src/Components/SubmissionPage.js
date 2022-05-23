@@ -8,6 +8,7 @@ class SubmissionPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            username: "Someone",
             page: 1,
             more: false,
             submissions: {},
@@ -17,30 +18,32 @@ class SubmissionPage extends React.Component {
     }
 
     loadSubmissionPage() {
-        console.log("Loading more!");
         const endpoint = 
             this.props.data_endpoint +
             (this.props.data_endpoint.includes('?') ? '&' : '?') +
             "limit=15&offset="+((this.state.page-1)*15);
         if (!this.state.isLoaded) {
-            this.persistenceController.getRequest(endpoint, {})
-                .then(response => {
-                    if (response.sub_page.length > 0) {
-                        this.setState({
-                            submissions: response.sub_page,
-                            more: response.sub_page.length >= 15,
-                            isLoaded: true
-                        });
-                    } else {
-                        this.setState({
-                            more: false,
-                            isLoaded: true
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.log("Error loading submissions from " + this.props.data_endpoint + ":", error);
-                });
+            Promise.all([
+                this.persistenceController.getRequest('/users/'+this.props.author, {}),
+                this.persistenceController.getRequest(endpoint, {})
+            ]).then(([user, response]) => {
+                if (response.sub_page.length > 0) {
+                    this.setState({
+                        username: user.username,
+                        submissions: response.sub_page,
+                        more: response.sub_page.length >= 15,
+                        isLoaded: true
+                    });
+                } else {
+                    this.setState({
+                        username: user.username,
+                        more: false,
+                        isLoaded: true
+                    });
+                }
+            }).catch(error => {
+                console.log("Error loading submissions from " + this.props.data_endpoint + ":", error);
+            });
         }
     }
 
@@ -53,10 +56,11 @@ class SubmissionPage extends React.Component {
     }
 
     render() {
+        const page_title = this.props.title.replace('%username%', this.state.username);
         if (!this.state.isLoaded) {
             return (
                 <div className="subPage">
-                    <h2> {this.props.title} </h2>
+                    <h2> {page_title} </h2>
                     <h4>Loading...</h4>
                 </div>
             )
@@ -76,7 +80,7 @@ class SubmissionPage extends React.Component {
             });
             return (
                 <div className="subPage">
-                    <h2> {this.props.title} </h2>
+                    <h2> {page_title} </h2>
                     <ul className="vertical-scroll">
                         {submission_list}
                     </ul>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PersistenceController from './Persistence.controller';
 import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import '../assets/css/comments.css';
+import { Link } from 'react-router-dom';
 
 class CommentItem extends Component {
     constructor(props) {
@@ -123,7 +124,7 @@ class CommentItem extends Component {
                         </div>
                         <div className='details'>
                             <div className='inDetails1'>
-                                <h4><a href="user?id=comment.googleId">{comment.username}</a></h4>
+                                <h4><Link to={"/profile/"+comment.googleId}>{comment.username}</Link></h4>
                                 <p>{comment.createdAt}</p>
                             </div>
                             <div className='inDetails2'>
