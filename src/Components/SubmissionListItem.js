@@ -4,6 +4,7 @@ import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import {MdOutlineForum} from 'react-icons/md';
 import {BiLink} from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+const time_ago = require("../utils/timeAgo");
 
 class SubmissionListItem extends React.Component {
     constructor(props) {
@@ -58,7 +59,7 @@ class SubmissionListItem extends React.Component {
                         </div>
                         <div className='details'>
                             <h3>{this.props.sub.title}</h3>
-                            <p><Link to={"/profile/"+this.props.sub.googleId}>{this.props.sub.username}</Link>, {this.props.sub.createdAt}.</p>
+                            <p><Link to={"/profile/"+this.props.sub.googleId}>{this.props.sub.username}</Link>, {time_ago(this.props.sub.createdAt)}.</p>
                         </div>
                     </div>
                     <div className='separator'/>
