@@ -71,7 +71,7 @@ class Navbar extends Component {
                 </ul>
                 <div className='profile_content'>
                     <div className='profile'>
-                        <Link to='/profile'>
+                        <Link to='/profile/108072218470064233500'>
                             <div className='profile_details'>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                                 <div className='name'>
@@ -80,7 +80,7 @@ class Navbar extends Component {
                             </div>
                         </Link>
                         <div className='logout'>
-                            <Link to='/profile'>
+                            <Link to='/profile/108072218470064233500'>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                             </Link>
                             <span className='tooltip tooltipxxl'>Profile</span>

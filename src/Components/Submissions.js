@@ -6,7 +6,7 @@ class Submissions extends React.Component {
         return (
             <SubmissionPage
                 title = "My Submissions"
-                data_endpoint = "/submissions/user/107232669716225452809"
+                data_endpoint = "/submissions/user/108072218470064233500"
             />
         );
     }

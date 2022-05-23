@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PersistenceController from './Persistence.controller';
 import {RiMenuFill, RiChat4Line} from 'react-icons/ri';
 
@@ -23,8 +23,7 @@ class Profile extends Component {
     }
 
     loadProfilePage() {
-        //let userId = "108072218470064233500"; //logged
-        let userId = "107232669716225452809"; //no logged
+        const userId = this.props.id;
         this.persistenceController.getRequest("/users/"+userId, {})
             .then(response => {
                 this.setState({
