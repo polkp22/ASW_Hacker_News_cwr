@@ -1,4 +1,4 @@
-.popup {
+.popup.show {
     position: fixed;
     top: 0;
     left: 78px;
@@ -9,15 +9,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.5s ease;
+    transition: opacity 0.8s ease;
+    transition: width 0.4 ease;
+    opacity: 1;
 }
 
-.sidebar.active ~ main .popup {
+.sidebar.active ~ main .popup.occult,
+.sidebar.active ~ main .popup.show {
     width: calc(100% - 300px);
     left: 300px;
-  }
+}
 
-.popup-inner {
+.popup-inner.occult,
+.popup-inner.show {
     position: relative;
     padding: 32px;
     background-color: #fff;
@@ -25,8 +29,24 @@
     max-width: 75%;
 }
 
-.popup .popup-inner .close-btn {
+.popup.occult .popup-inner.occult .close-btn,
+.popup.show .popup-inner.show .close-btn {
     position: absolute;
     top: 16px;
     right: 16px;
+}
+
+.popup.occult {
+    position: fixed;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s ease;
+    opacity: 0;
 }

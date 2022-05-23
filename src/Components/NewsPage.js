@@ -1,7 +1,8 @@
 import React from 'react';
 import SubmissionListItem from './SubmissionListItem';
 import '../assets/css/submissionPage.css';
-import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io';
+import '../assets/css/newsPage.css';
+import {IoIosArrowBack, IoIosArrowForward, IoMdCloseCircleOutline} from 'react-icons/io';
 import PersistenceController from './Persistence.controller';
 import Popup from './Popup';
 
@@ -106,7 +107,7 @@ class News extends React.Component {
             let submission_list = this.state.submissions.map((item, index) => {
                 return <li key={item.id}>
                     <SubmissionListItem
-                        list_index = {index+1}
+                        list_index = {((page-1) * 15) + index+1}
                         sub = { item }
                         isMobile={false}
                         handleCommentClick={()=>{}}
@@ -123,7 +124,7 @@ class News extends React.Component {
                     </ul>
                     <div className='newSubmission'>
                         <button onClick={() => {this.setState({buttonPopup: true});}}>
-                            New Submission
+                            <span>New Submission</span>
                         </button>
                     </div>
                     <div className="pageButtons">
@@ -133,9 +134,9 @@ class News extends React.Component {
                     </div>
                     <Popup trigger={this.state.buttonPopup}>
                         <button className='close-btn' onClick={() => {this.setState({buttonPopup: false});}}>
-                            close
+                            <IoMdCloseCircleOutline />
                         </button>
-                        <div className=''>
+                        <div className='formContainer'>
                             <form onSubmit = {this.handleForm}>
                                 <div class="row">
                                     <div class="col-25">
@@ -163,7 +164,7 @@ class News extends React.Component {
                                 </div>
 
                                 <div class="row">
-                                    <input type="submit" value="Submit"/>
+                                    <input id="submitForm" type="submit" value="Submit"/>
                                 </div>
                             </form>
                         </div>
