@@ -34,7 +34,8 @@ class Profile extends Component {
                     about: response.about,
                     maxvisit: response.maxvisit,
                     minaway:response.minaway,
-                    delay: response.delay
+                    delay: response.delay,
+                    id: response.googleId
                 });
             })
             .catch(error => {
@@ -47,6 +48,7 @@ class Profile extends Component {
     }
 
     componentDidUpdate() {
+        if (this.props.id !== this.props.session.logged_user) this.loadProfilePage();
         if (!this.state.isLoaded) this.loadProfilePage();
     }
 
@@ -69,7 +71,8 @@ class Profile extends Component {
                     about: response.about,
                     maxvisit: response.maxvisit,
                     minaway:response.minaway,
-                    delay: response.delay
+                    delay: response.delay,
+                    id: response.googleId
                 });
             })
             .catch(error => {
@@ -162,7 +165,7 @@ class Profile extends Component {
                         <div className='profileHeaderGreen'></div>
                         <div className='profileHeaderImage'>
                             <div>
-                                <img className='profileImg' src="https://as1.ftcdn.net/v2/jpg/01/88/34/66/1000_F_188346637_7a9h4gqPnag7lekMbJAZNq01MUs7v4Vs.jpg" alt="profile"/>
+                                <img className='profileImg' src={ `${this.state.id == this.props.session.logged_user ? "https://avatars.githubusercontent.com/u/24862408?v=4" : "https://admin.cmsiglo21.com/public/images/medicos_images/default.png?%3E"}`} alt="profile"/>
                             </div>
                         </div>
                     </div>

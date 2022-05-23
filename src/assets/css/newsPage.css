@@ -83,15 +83,24 @@ form #submitForm {
 }
 
 
-
-.orderFilter {
+.filter {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
 }
+.orderFilter, .typeFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.typeFilter {
+    margin-left: 30px;
+}
 .filterButton {
-    background-color: white;
+    background-color: rgb(216, 215, 215);
     color: rgb(26, 26, 26);
     border: none;
     padding: 5px 10px;
@@ -117,6 +126,15 @@ form #submitForm {
     margin-right: 10px;
 }
 
+@media screen and (max-width: 800px) {
+    .filter {
+        flex-direction: column;
+    }
+    .typeFilter {
+        margin-top: 10px;
+    }
+}
+
 .newSubmission {
     display: flex;
     justify-content: center;
@@ -135,7 +153,6 @@ form #submitForm {
     transition: all 0.4s ease;
     align-self: center;
 }
-
 
 @media screen and (max-width: 500px) {
     form .row {
