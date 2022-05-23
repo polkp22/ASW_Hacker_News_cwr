@@ -83,16 +83,25 @@ form #submitForm {
 }
 
 
-
-.orderFilter {
+.filter {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
     border-bottom:rgb(58, 61, 58) solid 2px;
 }
+.orderFilter, .typeFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.typeFilter {
+    margin-left: 30px;
+}
 .filterButton {
-    background-color: white;
+    background-color: rgb(216, 215, 215);
     color: rgb(26, 26, 26);
     border: none;
     padding: 5px 10px;
@@ -116,6 +125,15 @@ form #submitForm {
 }
 .orderText {
     margin-right: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .filter {
+        flex-direction: column;
+    }
+    .typeFilter {
+        margin-top: 10px;
+    }
 }
 
 @media screen and (max-width: 500px) {

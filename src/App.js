@@ -49,7 +49,7 @@ function CommentsParamWrapper() {
 
 function ProfileParamWrapper() {
   let {id} = useParams();
-  return <Profile id={id}/>;
+  return <Profile session={session} id={id}/>;
 }
 
 export default App;

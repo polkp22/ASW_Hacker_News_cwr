@@ -6,7 +6,7 @@ class News extends React.Component {
         return (
             <NewsPage
                 title = "Hacker News Submissions"
-                data_endpoint = "/submissions?type=any"
+                data_endpoint = "/submissions?type="
             />
         );
     }
