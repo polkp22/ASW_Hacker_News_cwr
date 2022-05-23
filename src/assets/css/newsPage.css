@@ -73,49 +73,13 @@ form #submitForm {
     color: rgb(169, 23, 23);
     font-size: 30px;
     cursor: pointer;
-    height: 30px;
+    height: 20px;
 }
 
 .reduceText {
     font-size: 12px;
     color: #fff;
     margin-top: 10px;
-}
-
-
-
-.orderFilter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom:rgb(58, 61, 58) solid 2px;
-}
-.filterButton {
-    background-color: white;
-    color: rgb(26, 26, 26);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    align-self: center;
-    margin-left: 5px;
-    min-width: 100px;
-}
-.filterButton:hover {
-    background-color: rgb(233, 233, 233);
-}
-.filterActtive {
-    background-color: #1b6f1bc7;
-    color:#fff;
-}
-.filterActtive:hover {
-    background-color: #2b922bc7;
-}
-.orderText {
-    margin-right: 10px;
 }
 
 @media screen and (max-width: 500px) {
