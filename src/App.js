@@ -16,6 +16,7 @@ function App() {
   const handleWindowSizeChange = () => {
           setWidth(window.innerWidth);
   }
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   useEffect(() => {
       window.addEventListener('resize', handleWindowSizeChange);

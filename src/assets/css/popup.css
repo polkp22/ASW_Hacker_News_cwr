@@ -1,0 +1,32 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active ~ main .popup {
+    width: calc(100% - 300px);
+    left: 300px;
+  }
+
+.popup-inner {
+    position: relative;
+    padding: 32px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 75%;
+}
+
+.popup .popup-inner .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}

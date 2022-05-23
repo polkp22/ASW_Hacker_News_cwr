@@ -17,7 +17,24 @@
     align-items: center;
 }
 
+.newSubmission {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.newSubmission button {
+    margin-top: 20px;
+    background-color: #1b6f1bc7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    align-self: center;
+}
 
 .subPage h4 {
     text-align: center;
