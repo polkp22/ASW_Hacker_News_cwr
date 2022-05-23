@@ -114,6 +114,25 @@
   margin: 0;
   transition-duration: 0.4s;
   font-size: 16px;
+  max-width: 140px;
+  min-width: 140px;
+  max-height: 37px;
+}
+
+.comment input[type=submit] {
+  cursor: pointer;
+  background-color: rgb(180, 250, 180);
+  border: None;
+  border-radius: 8px;
+  padding: 6px 30px;
+  margin: 0;
+  transition-duration: 0.4s;
+  font-size: 16px;
+}
+
+.comment input[type=submit]:hover {
+  background-color: hwb(120 37% 38%);
+  color:white;
 }
 
 .comment .reply_btn:hover {
@@ -152,7 +171,7 @@
 }
 
 /* Responsive layout - when the screen is less than 500px wide */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .container {
     width: 100%;
     margin-top: 0;
@@ -160,8 +179,20 @@
   .comment form {
     display: grid;
     grid-template-rows: auto min-content;
+    justify-content: center;
+    row-gap: 10px;
   }
   .comment textArea {
+    width: 100%;
+  }
+  .comment .inDetails2 {
+    display: grid;
+    grid-template-rows: auto min-content;
+    width: 100%;
+    justify-content: unset;
+  }
+  .comment .reply_btn {
+    justify-self: right;
     width: 100%;
   }
 }
