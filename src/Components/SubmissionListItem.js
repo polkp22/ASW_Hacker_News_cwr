@@ -67,7 +67,7 @@ class SubmissionListItem extends React.Component {
                             <h4>Visit site</h4>
                             <BiLink className='icon' alt='Visit site'/>
                         </button></a>
-                        <Link to="/comments">
+                        <Link to={"/submissions/"+this.props.sub.id}>
                             <button title='View comments' onClick={() => this.props.handleCommentClick(this.props.sub.id)}>
                                 <h4>See comments</h4>
                                 <MdOutlineForum className='icon' alt='View comments'/>
