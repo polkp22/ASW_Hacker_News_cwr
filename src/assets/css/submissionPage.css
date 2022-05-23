@@ -1,7 +1,7 @@
 .subPage {
     height: 100vh;
     display: grid;
-    grid-template-rows: min-content auto min-content;
+    grid-template-rows: min-content auto min-content min-content;
 }
 
 .subPage ul {
@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top:rgb(58, 61, 58) solid 2px;
 }
 
 .newSubmission button {
