@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PersistenceController from './Persistence.controller';
 import {RiMenuFill, RiChat4Line} from 'react-icons/ri';
-
-//Styles
 import "../assets/css/profile.css"
+
+const time_ago = require("../utils/timeAgo");
 
 class Profile extends Component {
     constructor(props) {
@@ -13,20 +13,24 @@ class Profile extends Component {
             info: {},
             isLoaded: false,
             logged: false,
-            id:"",
+            id: "",//this.props.match.params.id,
             about: "",
             maxvisit: "",
             minaway:"",
             delay: ""
         };
         this.persistenceController = new PersistenceController();
+        
     }
 
     loadProfilePage() {
+        
+        
         //let userId = "108072218470064233500"; //logged
         let userId = "107232669716225452809"; //no logged
         this.persistenceController.getRequest("/users/"+userId, {})
             .then(response => {
+                response.createdAt = time_ago(response.createdAt);
                 this.setState({
                     info: response,
                     isLoaded: true,
@@ -76,6 +80,10 @@ class Profile extends Component {
             .catch(error => {
                 console.log("error", error);
             });
+    }
+
+    dateFormat = () => {
+
     }
 
     render() {
