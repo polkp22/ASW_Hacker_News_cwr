@@ -3,6 +3,7 @@ import PersistenceController from './Persistence.controller';
 import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import '../assets/css/comments.css';
 import { Link } from 'react-router-dom';
+import time_ago from '../utils/timeAgo';
 
 class CommentItem extends Component {
     constructor(props) {
@@ -96,6 +97,8 @@ class CommentItem extends Component {
 
     render() {
         const { comment, replies, upvoted, points, showForm } = this.state;
+        
+        comment.createdAt = time_ago(comment.createdAt);
 
         const showFormPressed = () => {
             this.setState({showForm: !showForm});
@@ -139,7 +142,7 @@ class CommentItem extends Component {
                         <div className='container'>
                             <form onSubmit = "this.replyComment; showFormPressed();">
                                 <textarea name="text" id='text' placeholder='Write your reply'></textarea>
-                                <input className='reply_btn' type="submit" value="Submit"/>
+                                <input type="submit" value="Submit"/>
                             </form>
                         </div>
                     )}
