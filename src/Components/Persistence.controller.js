@@ -49,13 +49,14 @@ PersistenceController.prototype.postRequest = async function(endpoint, params) {
 };
 
 PersistenceController.prototype.putRequest = async function(endpoint, params) {
+    console.log("params ctrl: ", params)
     let settings = {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'api_key': process.env.REACT_APP_API_KEY
         },
-        data: params
+        body: JSON.stringify(params)
     };
     
     let data = await fetch(this.DB_URI + endpoint, settings)

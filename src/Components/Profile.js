@@ -11,65 +11,103 @@ class Profile extends Component {
         super(props);
         this.state = {
             info: {},
-            isLoaded: false
+            isLoaded: false,
+            logged: false,
+            id:"",
+            about: "",
+            maxvisit: "",
+            minaway:"",
+            delay: ""
         };
         this.persistenceController = new PersistenceController();
     }
 
-    componentDidMount() {
-        if (!this.state.isLoaded) {
-            this.persistenceController.getRequest("/users/107232669716225452809", {})
-                .then(response => {
-                    this.setState({
-                        info: response,
-                        isLoaded: true
-                    });
-                })
-                .catch(error => {
-                    console.log("error¿?", error);
+    loadProfilePage() {
+        let userId = "108072218470064233500"; //logged
+        //let userId = "107232669716225452809"; //no logged
+        this.persistenceController.getRequest("/users/"+userId, {})
+            .then(response => {
+                this.setState({
+                    info: response,
+                    isLoaded: true,
+                    logged: ("apiKey" in response) ? true : false,
+                    id: userId,
+                    about: response.about,
+                    maxvisit: response.maxvisit,
+                    minaway:response.minaway,
+                    delay: response.delay
                 });
-        }
+            })
+            .catch(error => {
+                console.log("error¿?", error);
+            });
     }
 
-    validateForm() {
-        let title = document.getElementById("title").value;
-        if (title.trim() === "") {
-            alert("Title is required");
-            return false;
-        }
-        return true;
+    componentDidMount() {
+        if (!this.state.isLoaded) this.loadProfilePage();
+    }
+
+    componentDidUpdate() {
+        if (!this.state.isLoaded) this.loadProfilePage();
     }
 
     handleForm = (event) => {
-        //prevent page refresh on submit
         event.preventDefault();
-        if (this.validateForm()) {
-            let form = event.target;
-            //get all the form elements
-            let formData = new FormData(form);
-            let params = {};
-            //iterate over the form elements and add them to the params object
-            for (let entry of formData.entries()) {
-                if (entry[1] !== "") params[entry[0]] = entry[1];
-            }
-            //post the new submission
-            this.persistenceController.postRequest("/submissions", params)
-                .then(response => {
-                    alert("Submission created successfully");
-                })
-                .catch(error => {
-                    console.log("error", error);
-                });
+        let form = event.target;
+        //get all the form elements
+        let formData = new FormData(form);
+        let params = {};
+        //iterate over the form elements and add them to the params object
+        for (let entry of formData.entries()) {
+            if (entry[1] !== "") params[entry[0]] = entry[1];
         }
+        //post the new submission
+        this.persistenceController.putRequest("/users/"+this.state.id, params)
+            .then(response => {
+                this.setState({
+                    info: response,
+                    isLoaded: true,
+                    about: response.about,
+                    maxvisit: response.maxvisit,
+                    minaway:response.minaway,
+                    delay: response.delay
+                });
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
     }
 
     render() {
-        var { isLoaded, info } = this.state;
+        var { isLoaded, info, logged } = this.state;
         if (!isLoaded) {
             return <div>Loading...</div>
         }
         else {
             console.log("info: ", info);
+            console.log("is logged?: ", logged)
+
+            const renderOption = (attrib) => {
+                let condition = "";
+                if (attrib === "showdead") condition = this.state.info.showdead;
+                else condition = this.state.info.noprocrast;
+                if (condition) {
+                    return (
+                        <select name={attrib}>
+                            <option value="yes" selected>yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    );
+                } else {
+                    return (
+                        <select name={attrib}>
+                            <option value="yes">yes</option>
+                            <option value="no" selected>no</option>
+                        </select>
+                    );
+                }
+            }
+
             return(
                 <div className='container profilecontainer'>
                     <div className='profileHeader'>
@@ -81,53 +119,52 @@ class Profile extends Component {
                         </div>
                     </div>
                     <div className='profileInfo'>
-                        <div className='username'><span className='profileTitle'>@juliahc</span></div>
+                        <div className='username'><span className='profileTitle'>{info.username}</span></div>
                         <div className='userData'>
                             <div className='userInfo'>
                                 <div>
                                     <div className='userDataTitle'><span className='profileTitle'>Profile info</span></div>
                                     <div className='info'>
                                         <div className='infoTag'>Created:</div>
-                                        <div className='infoValue'>66 days ago</div>
+                                        <div className='infoValue'>{info.createdAt}</div>
                                     </div>
                                     <div className='info'>
                                         <div className='infoTag'>Karma:</div>
-                                        <div className='infoValue'>1</div>
+                                        <div className='infoValue'>{info.karma}</div>
                                     </div>
-                                    <form className='profileForm' onSubmit = {this.handleForm}>
+                                    <form onSubmit={this.handleForm} className='profileForm'>
                                         <div className='info infoAbout'>
                                             <div className='infoTag'>About:</div>
-                                            <div className='infoValue'><textarea name="about" rows="4" cols="49"></textarea></div>
+                                            <div className='infoValue'>
+                                                <textarea name="about" rows="4" cols="49" 
+                                                    value={this.state.about}
+                                                    onChange={(e) => this.setState({about:e.target.value})}
+                                                ></textarea>
+                                            </div>
                                         </div>
                                         <div className='info'>
                                             <div className='infoTag'>Showdead:</div>
                                             <div className='infoValue'>
-                                                <select name="showdead">
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">no</option>
-                                                </select>
+                                                {renderOption("showdead")}
                                             </div>
                                         </div>
                                         <div className='info'>
                                             <div className='infoTag'>Noprocrast:</div>
                                             <div className='infoValue'>
-                                                <select name="noprocrast">
-                                                    <option value="yes">Yes</option>
-                                                    <option value="no">no</option>
-                                                </select>
+                                                {renderOption("noprocrast")}
                                             </div>
                                         </div>
                                         <div className='info'>
                                             <div className='infoTag'>Maxvisit:</div>
-                                            <div className='infoValue'><input type="number" name="maxvisit" value="10"/></div>
+                                            <div className='infoValue'><input type="number" name="maxvisit" value={this.state.maxvisit} onChange={(e) => this.setState({maxvisit: e.target.value})}/></div>
                                         </div>
                                         <div className='info'>
                                             <div className='infoTag'>Minaway:</div>
-                                            <div className='infoValue'><input type="number" name="minaway" value="180"/></div>
+                                            <div className='infoValue'><input type="number" name="minaway" value={this.state.minaway} onChange={(e) => this.setState({minaway: e.target.value})}/></div>
                                         </div>
                                         <div className='info'>
                                             <div className='infoTag'>Delay:</div>
-                                            <div className='infoValue'><input type="number" name="delay" value="0"/></div>
+                                            <div className='infoValue'><input type="number" name="delay" value={this.state.delay} onChange={(e) => this.setState({delay: e.target.value})}/></div>
                                         </div>
                                         <div className='profileButton'>
                                             <input type="submit" value="Update"/>
@@ -135,7 +172,7 @@ class Profile extends Component {
                                     </form>
                                 </div>
                             </div>
-                            <div className='userActivity'>
+                            <div className='userActivity' style={{display: logged ? "none" : "flex"}}>
                                 <div>
                                     <div className='userDataTitle'><span className='profileTitle'>Activity</span></div>
                                     <Link to="#" className='activity'>
