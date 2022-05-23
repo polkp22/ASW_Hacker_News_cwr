@@ -138,32 +138,32 @@ class News extends React.Component {
                         </button>
                         <div className='formContainer'>
                             <form onSubmit = {this.handleForm}>
-                                <div class="row">
-                                    <div class="col-25">
+                                <div className="row">
+                                    <div className="col-25">
                                         <label for="title">Title: *</label>
                                     </div>
-                                    <div class="col-75">
+                                    <div className="col-75">
                                         <input type="text" id="title" name="title" placeholder="Insert a title..."/>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-25">
-                                        <label for="url">Url</label>
+                                <div className="row">
+                                    <div className="col-25">
+                                        <label for="url">Url:</label>
                                     </div>
-                                    <div class="col-75">
+                                    <div className="col-75">
                                         <input type="text" id="url" name="url" placeholder="Url..."/>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-25">
-                                        <label for="text">Text</label>
+                                <div className="row">
+                                    <div className="col-25">
+                                        <label for="text">Text:</label>
                                     </div>
-                                    <div class="col-75">
+                                    <div className="col-75">
                                         <textarea name="text" rows="4" cols="49"></textarea>
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div className="row">
                                     <input id="submitForm" type="submit" value="Submit"/>
                                 </div>
                             </form>
