@@ -89,7 +89,6 @@ form #submitForm {
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
-    border-bottom:rgb(58, 61, 58) solid 2px;
 }
 .orderFilter, .typeFilter {
     display: flex;
@@ -134,6 +133,25 @@ form #submitForm {
     .typeFilter {
         margin-top: 10px;
     }
+}
+
+.newSubmission {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newSubmission button {
+    margin-top: 20px;
+    background-color: #1b6f1bc7;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    align-self: center;
 }
 
 @media screen and (max-width: 500px) {

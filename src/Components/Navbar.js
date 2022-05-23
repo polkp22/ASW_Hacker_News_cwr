@@ -34,13 +34,6 @@ class Navbar extends Component {
                         <span className='tooltip'>HN Submissions</span>
                     </li>
                     <li>
-                        <Link to='/threads'>
-                        <MdOutlineForum />
-                            <span className='links_name'>Threads</span>
-                        </Link>
-                        <span className='tooltip'>Threads</span>
-                    </li>
-                    <li>
                         <Link to={'/submissions/user/'+this.props.user}>
                         <RiMenuFill />
                             <span className='links_name'>My Submissions</span>

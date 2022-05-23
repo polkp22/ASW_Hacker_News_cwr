@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import PersistenceController from './Persistence.controller';
+import {FaHeart, FaRegHeart} from 'react-icons/fa';
 import '../assets/css/comments.css';
+import { Link } from 'react-router-dom';
 
 class CommentItem extends Component {
     constructor(props) {
@@ -24,11 +27,71 @@ class CommentItem extends Component {
             replies: props.children.replies,
             showForm: false
         };
-        // this.persistenceController = new PersistenceController();
+        this.persistenceController = new PersistenceController();
     }
 
-    replyComment () {
-        
+    validateForm() {
+        let text = document.getElementById("text").value;
+        if (text.trim() === "") {
+            alert("Text is required for a reply");
+            return false;
+        }
+        return true;
+    }
+
+    replyComment = (event) => {
+        //prevent page refresh on submit
+        event.preventDefault();
+        if (this.validateForm()) {
+            let form = event.target;
+            //get all the form elements
+            let formData = new FormData(form);
+            console.log("FORM DATA", formData);
+            let params = formData;
+            //iterate over the form elements and add them to the params object
+            for (let entry of formData.entries()) {
+                if (entry[1] !== "") params[entry[0]] = entry[1];
+            }
+            //post the new reply
+            this.persistenceController.postRequest("/comments/"+this.state.comment.id+"/replies", params)
+                .then(response => {
+                    alert("Comment replied successfully");
+                })
+                .catch(error => {
+                    console.log("error", error);
+                });
+        }
+    }
+
+    upvoteComment = (event) => {
+        //prevent page refresh on submit
+        event.preventDefault();
+        //update the State
+        this.setState({upvoted: true, points: this.state.points+1})
+        //upvote the comment
+        this.persistenceController.postRequest("/users/"+process.env.HARDCODED_USER_ID+"/upvoteComment/"+this.state.comment.id, {})
+        .then(response => {
+            console.log(response)
+            alert("Comment upvoted successfully");
+        })
+        .catch(error => {
+            console.log("error", error);
+        });
+    }
+
+    downvoteComment = (event) => {
+        //prevent page refresh on submit
+        event.preventDefault();
+        //update the State
+        this.setState({upvoted: false, points: this.state.points-1})
+        //downvote the comment
+        this.persistenceController.postRequest("/users/"+process.env.HARDCODED_USER_ID+"/downvoteComment/"+this.state.comment.id, {})
+        .then(response => {
+            alert("Comment downvoted successfully");
+        })
+        .catch(error => {
+            console.log("error", error);
+        });
     }
 
     render() {
@@ -38,29 +101,30 @@ class CommentItem extends Component {
             this.setState({showForm: !showForm});
         }
 
-        const renderUpvoteButton = () => {
-            if (upvoted) {
-                return <a href='#downvote'><button className='like_btn' title='Downvote' onClick={( )=> this.setState({upvoted: false, points: this.state.points-1})}>
-                    <i class="fa-solid fa-heart" alt='Downvote'></i>
-                </button></a>;
-            } else {
-                return <a href='#upvote'><button className='like_btn' title='Upvote' onClick={( )=> this.setState({upvoted: true, points: this.state.points+1})}>
-                    <i class="fa-regular fa-heart" alt='Upvote'></i>
-                </button></a>;
-            }
-        }
+        const heart_filling = () => {
+            if (upvoted) return <FaHeart className='like_icon' alt='Downvote'/> 
+            return <FaRegHeart className='like_icon' alt='Upvote'/>;
+        };
 
         return(
             <div>
                 <div className='comment'>
                     <div className='layoutRow'>  
-                        <div className='like'>
-                            {renderUpvoteButton()}
+                        <div className={'like'}>
+                            <a href={upvoted ? this.downvoteComment : this.upvoteComment}>
+                                <button className='like_btn' 
+                                    title={upvoted ? 'Downvote' : 'Upvote'} 
+                                    onClick={()=> upvoted 
+                                        ? this.setState({upvoted: false, points: this.state.points-1}) 
+                                        : this.setState({upvoted: true, points: this.state.points+1})}>
+                                    {heart_filling()}
+                                </button>
+                            </a>
                             <p>{points}</p>
                         </div>
                         <div className='details'>
                             <div className='inDetails1'>
-                                <h4><a href="user?id=comment.googleId">{comment.username}</a></h4>
+                                <h4><Link to={"/profile/"+comment.googleId}>{comment.username}</Link></h4>
                                 <p>{comment.createdAt}</p>
                             </div>
                             <div className='inDetails2'>
@@ -73,11 +137,9 @@ class CommentItem extends Component {
                     </div>
                     {showForm && (
                         <div className='container'>
-                            <form onSubmit = {this.replyComment()}>
-                                <div className="row">
-                                    <textarea name="text" placeholder='Write your reply'></textarea>
-                                    <input type="submit" value="Submit"/>
-                                </div>
+                            <form onSubmit = "this.replyComment; showFormPressed();">
+                                <textarea name="text" id='text' placeholder='Write your reply'></textarea>
+                                <input className='reply_btn' type="submit" value="Submit"/>
                             </form>
                         </div>
                     )}

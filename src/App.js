@@ -2,23 +2,22 @@ import Navbar from './Components/Navbar';
 import Profile from './Components/Profile';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import News from './Components/News';
-import Threads from './Components/Threads';
 import SubmissionDetails from './Components/SubmissionDetails';
 import Submissions from './Components/Submissions';
 import Comments from './Components/Comments';
 import UpvotedSubmissions from './Components/UpvotedSubmissions';
 import UpvotedComments from './Components/UpvotedComments';
-/* import SubmissionListItem from './Components/SubmissionListItem'; */
+
+let session = {logged_user: "108072218470064233500"};
 
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
-          <Navbar user="108072218470064233500"/>
+          <Navbar user={session.logged_user}/>
           <main>
             <Routes>
               <Route path="/" element={<News/>} />
-              <Route path="/threads" element={<Threads/>} />
               <Route path="/submissions/:id/" element={<SubmissionsParamWrapper/>} />
               <Route path="/submissions/user/:id/" element={<UserSubmissionsParamWrapper/>} />
               <Route path="/comments/:id/" element={<CommentsParamWrapper/>} />
@@ -39,12 +38,12 @@ function SubmissionsParamWrapper() {
 
 function UserSubmissionsParamWrapper() {
   let {id} = useParams();
-  return <Submissions id={id}/>;
+  return <Submissions session={session} id={id}/>;
 }
 
 function CommentsParamWrapper() {
   let {id} = useParams();
-  return <Comments id={id}/>;
+  return <Comments session={session} id={id}/>;
 }
 
 function ProfileParamWrapper() {

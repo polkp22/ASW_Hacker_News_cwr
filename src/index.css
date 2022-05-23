@@ -24,6 +24,8 @@ body {
 .vertical-scroll {
   overflow-y: scroll;
   background-color: rgb(241, 241, 241);
+  border-top: rgb(58, 61, 58) solid 1px;
+  border-bottom: rgb(58, 61, 58) solid 1px;
 }
 
 /* /Global */
