@@ -1,0 +1,154 @@
+.profilecontainer {
+    background-color: white !important;
+    overflow-y: scroll;
+}
+.profileHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profileHeaderGreen {
+    width: 100%;
+    height: 120px;
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+}
+.profileHeaderImage {
+    display: flex;
+    position:absolute;
+    justify-content: center;
+}
+.profileHeaderImage div {
+    margin-top: 30px;
+    border-radius: 1000px;
+    
+}
+.profileImg {
+    width: 180px;
+    height: 180px;
+    border-radius: 1000px;
+    border: 4px solid white;
+}
+.username {
+    margin-top: 100px;
+    text-align: center;
+}
+.profileTitle {
+    font-size: 18px;
+    font-weight: 500;
+}
+.userData {
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+}
+.userDataTitle {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.userInfo, .userActivity {
+    width:50%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: .75em;
+    padding: 20px
+}
+.userInfo {
+    margin: 20px 15px 20px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.infoTag {
+    min-width: 110px;
+    color: rgb(122, 122, 122);
+}
+.profileForm select {
+    padding: 8px;
+}
+.profileForm input[type=number] {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+.profileForm textarea {
+    max-width: 450px;
+}
+.profileForm input[type=submit] {
+    background-color: lightgreen;
+    color: rgb(53, 53, 53);
+    font-weight: 500;
+    padding: 12px 20px;
+    border: none;
+    border-radius: .75em;
+    cursor: pointer;
+}
+.profileForm input[type=submit]:hover {
+    background-color: rgb(53, 53, 53);
+    color: lightgreen;
+}
+.profileButton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.userActivity {
+    margin: 20px 30px 20px 15px;
+    display: flex;
+    justify-content: center;
+}
+.activity {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color:black;
+}
+.activity:hover {
+    color: #3bd483;
+}
+.activityText {
+    margin-left: 6px;
+}
+
+
+@media (max-width: 1100px) { 
+    .userData {
+        flex-direction: column;
+        align-items:  center;
+    }
+    .userInfo, .userActivity {
+        width:70%;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: .75em;
+        padding: 20px;
+        margin: 30px;
+    }
+}
+
+@media (max-width: 890px) { 
+    .userData {
+        flex-direction: column;
+        align-items:  center;
+    }
+    .userInfo, .userActivity {
+        width:90%;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: .75em;
+        padding: 20px;
+        margin: 30px;
+    }
+    .info {
+        align-items: flex-start;
+    }
+    .infoAbout {
+        flex-direction: column;
+    }
+}
