@@ -29,9 +29,9 @@ class Navbar extends Component {
                     <li>
                         <Link to='/'>
                         <RiHomeLine />
-                            <span className='links_name'>News</span>
+                            <span className='links_name'>HN Submissions</span>
                         </Link>
-                        <span className='tooltip'>News</span>
+                        <span className='tooltip'>HN Submissions</span>
                     </li>
                     <li>
                         <Link to='/threads'>

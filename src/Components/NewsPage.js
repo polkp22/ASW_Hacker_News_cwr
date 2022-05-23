@@ -14,7 +14,8 @@ class News extends React.Component {
             more: false,
             submissions: {},
             isLoaded: false,
-            buttonPopup: false
+            buttonPopup: false,
+            order:"new"
         };
         this.persistenceController = new PersistenceController();
     }
@@ -22,7 +23,7 @@ class News extends React.Component {
     loadSubmissionPage() {
         console.log("Loading more!");
         const endpoint = 
-            this.props.data_endpoint +
+            this.props.data_endpoint + "&order=" + this.state.order +
             (this.props.data_endpoint.includes('?') ? '&' : '?') +
             "limit=15&offset="+((this.state.page-1)*15);
         if (!this.state.isLoaded) {
@@ -92,6 +93,13 @@ class News extends React.Component {
         }
     }
 
+    newOrder = (o) => {
+        if (this.state.order != o) {
+            this.setState({order: o, isLoaded: false});
+            this.loadSubmissionPage();
+        }
+    }
+
     render() {
 
         if (!this.state.isLoaded) {
@@ -117,13 +125,19 @@ class News extends React.Component {
             });
             return (
                 <div className="subPage">
-                    <h2> {this.props.title} </h2>
+                    <div className='submissionsHeader'>
+                        <h2> {this.props.title} </h2>
+                        <div className='orderFilter'>
+                            <div className='orderText'>Order by:</div>
+                            <div><button className={`filterButton ${this.state.order === "new" ? "filterActtive" : ""}`} onClick={() => {this.newOrder("new")}}>Newest</button></div>
+                            <div><button className={`filterButton ${this.state.order === "pts" ? "filterActtive" : ""}`} onClick={() => {this.newOrder("pts")}}>Points</button></div>
+                        </div>
+                    </div>
                     <ul className="vertical-scroll">
                         {submission_list}
-                        
                     </ul>
                     <div className='newSubmission'>
-                        <button onClick={() => {this.setState({buttonPopup: true});}}>
+                        <button onClick={() => {this.setState({buttonPopup: true})}}>
                             <span>New Submission</span>
                         </button>
                     </div>
