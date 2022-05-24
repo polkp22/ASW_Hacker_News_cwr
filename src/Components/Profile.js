@@ -165,10 +165,11 @@ class Profile extends Component {
             return(
                 <div className='container profilecontainer'>
                     <div className='profileHeader'>
-                        <div className='profileHeaderGreen'></div>
-                        <div className='profileHeaderImage'>
-                            <div>
-                                <img className='profileImg' src={ `${this.state.id == this.props.session.logged_user ? "https://avatars.githubusercontent.com/u/24862408?v=4" : "https://admin.cmsiglo21.com/public/images/medicos_images/default.png?%3E"}`} alt="profile"/>
+                        <div className='profileHeaderGreen'>
+                            <div className='profileHeaderImage'>
+                                <div>
+                                    <img className='profileImg' src={ `${this.state.id == this.props.session.logged_user ? "https://avatars.githubusercontent.com/u/24862408?v=4" : "https://admin.cmsiglo21.com/public/images/medicos_images/default.png?%3E"}`} alt="profile"/>
+                                </div>
                             </div>
                         </div>
                     </div>
