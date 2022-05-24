@@ -56,7 +56,7 @@ class SubmissionDetails extends Component {
     }
 
     validateForm() {
-        let text = document.getElementById("newCommentText").value;
+        let text = document.getElementById("text").value;
         if (text.trim() === "") {
             alert("Text is required for a comment");
             return false;
@@ -67,19 +67,18 @@ class SubmissionDetails extends Component {
     handleCommentForm = (event) => {
         event.preventDefault();
         if (this.validateForm()) {
-            let form = event.target;
-            //get all the form elements
-            let formData = new FormData(form);
-            console.log("FORM DATA", formData);
-            let params = formData;
-            //iterate over the form elements and add them to the params object
-            for (let entry of formData.entries()) {
-                if (entry[1] !== "") params[entry[0]] = entry[1];
+            console.log("before");
+            let params =  {
+                "text": document.getElementById("text").value
             }
+            console.log("after. Params: ", params, ". This state: ", this.state.id);
             //post the new reply
-            this.persistenceController.postRequest("/comments/"+this.state.comment.id+"/replies", params)
+            this.persistenceController.postRequest("/submissions/"+this.state.id+"/comments", params)
                 .then(response => {
-                    alert("Comment replied successfully");
+                    console.log("HOLAA")
+                    let addComment = this.state.submission;
+                    addComment.comments.push(response);
+                    this.setState({submission: addComment});
                 })
                 .catch(error => {
                     console.log("error", error);
@@ -88,7 +87,6 @@ class SubmissionDetails extends Component {
     }
 
     render() {
-
         return (
             <div className="submissionDetails">
                 <div className="submissionDetailsHeader">
@@ -124,8 +122,8 @@ class SubmissionDetails extends Component {
                     )}
                     {this.state.newComment && (
                         <div className='newCommentForm'>
-                            <form onSubmit={() => this.handleCommentForm()}>
-                                <textarea name="text" id="newCommentText" placeholder='Write your comment'></textarea>
+                            <form onSubmit={this.handleCommentForm}>
+                                <textarea name="text" id="text" placeholder='Write your comment' defaultValue={""}></textarea>
                                 <div className='formButtons'>
                                     <button className='newCommentButton cancelButton' onClick={() => {this.setState({newComment:false})}}>Cancel</button>
                                     <input type="submit" className="newCommentButton" value="Publish"/>
