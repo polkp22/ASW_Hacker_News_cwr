@@ -7,6 +7,7 @@ class Comments extends Component {
         super(props);
         
         this.state = {
+            username: "Someone",
             comments: {},
             isLoaded: false
         };
@@ -14,27 +15,42 @@ class Comments extends Component {
     }
 
     componentDidMount() {
-      if (!this.state.isLoaded) {
-          this.persistenceController.getRequest("/comments/user/108072218470064233500", {})
-              .then(response => {
-                  this.setState({
-                      comments: response,
-                      isLoaded: true
-                  });
-              })
-              .catch(error => {
-                  console.log("error¿?", error);
-              });
-      }
-  }
+        if (!this.state.isLoaded) {
+            /*this.persistenceController.getRequest("/comments/user/108072218470064233500", {})
+                .then(response => {
+                    this.setState({
+                        comments: response,
+                        isLoaded: true
+                    });
+                })
+                .catch(error => {
+                    console.log("error¿?", error);
+                });
+            */
+            Promise.all([
+                this.persistenceController.getRequest('/users/'+this.props.id, {}),
+                this.persistenceController.getRequest('/comments/user/'+this.props.id, {})
+            ]).then(([user, response]) => {
+                this.setState({
+                    username: user.username,
+                    comments: response,
+                    isLoaded: true
+                });
+            }).catch(error => {
+                console.log("Error loading comments from " + this.props.id + ":", error);
+            });
+        }
+    }
 
     render() {
         const { isLoaded, comments } = this.state;
+        const page_title = this.props.session.logged_user === this.props.id ? "My Comments" : this.state.username+"'s Comments";
+
 
         if (!isLoaded) {
             return(
                 <div className='commentPage'>
-                    <h2>Comments</h2>
+                    <h2>{page_title}</h2>
                     <div>
                         <h4>Loading...</h4>
                         <div class="fa-3x">
@@ -47,7 +63,7 @@ class Comments extends Component {
         else {
             return(
               <div className='commentPage'>
-                <h2>Comments</h2>
+                <h2>{page_title}</h2>
                 <ul className='vertical-scroll'>
                    {comments.map((com) =>
                     <li><CommentItem>{com}</CommentItem>
