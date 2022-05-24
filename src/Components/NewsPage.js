@@ -168,23 +168,36 @@ class News extends React.Component {
                             <IoMdCloseCircleOutline />
                         </button>
                         <div className='formContainer'>
-                        <form onSubmit = {this.handleForm}>
-                            <div className="field padding-bottom--24">
-                                <label for="title">Title: *</label>
-                                <input type="text" name="title"/>
-                            </div>
-                            <div className="field padding-bottom--24">
-                                <label for="url">Url:</label>
-                                <input type="text" name="url"/>
-                            </div>
-                            <div className="field padding-bottom--24">
-                                <label for="text">Text:</label>
-                                <textarea type="text" name="text"/>
-                            </div>
-                            <div className="field padding-bottom--24">
-                                <input type="submit" name="submit" value="Continue"/>
-                            </div>
-                        </form>
+                            <form onSubmit = {this.handleForm}>
+                                <div className="row">
+                                    <div className="col-25">
+                                        <label for="title">Title: *</label>
+                                    </div>
+                                    <div className="col-75">
+                                        <input type="text" id="title" name="title" placeholder="Insert a title..."/>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-25">
+                                        <label for="url">Url:</label>
+                                    </div>
+                                    <div className="col-75">
+                                        <input type="text" id="url" name="url" placeholder="Url..."/>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-25">
+                                        <label for="text">Text:</label>
+                                    </div>
+                                    <div className="col-75">
+                                        <textarea name="text" rows="4" cols="49"></textarea>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <input id="submitForm" type="submit" value="Submit"/>
+                                </div>
+                            </form>
                         </div>
                     </Popup>
                 </div>
