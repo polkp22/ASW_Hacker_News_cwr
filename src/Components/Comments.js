@@ -16,17 +16,6 @@ class Comments extends Component {
 
     componentDidMount() {
         if (!this.state.isLoaded) {
-            /*this.persistenceController.getRequest("/comments/user/108072218470064233500", {})
-                .then(response => {
-                    this.setState({
-                        comments: response,
-                        isLoaded: true
-                    });
-                })
-                .catch(error => {
-                    console.log("error¿?", error);
-                });
-            */
             Promise.all([
                 this.persistenceController.getRequest('/users/'+this.props.id, {}),
                 this.persistenceController.getRequest('/comments/user/'+this.props.id, {})
@@ -45,7 +34,6 @@ class Comments extends Component {
     render() {
         const { isLoaded, comments } = this.state;
         const page_title = this.props.session.logged_user === this.props.id ? "My Comments" : this.state.username+"'s Comments";
-
 
         if (!isLoaded) {
             return(
@@ -66,7 +54,7 @@ class Comments extends Component {
                 <h2>{page_title}</h2>
                 <ul className='vertical-scroll'>
                    {comments.map((com) =>
-                    <li><CommentItem>{com}</CommentItem>
+                    <li><CommentItem session={this.props.session} showReplies={true}>{com}</CommentItem>
                     </li>
                   )}
                 </ul>

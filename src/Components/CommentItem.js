@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PersistenceController from './Persistence.controller';
-import {FaHeart, FaRegHeart} from 'react-icons/fa';
+import {FaHeart, FaRegHeart, FaReply} from 'react-icons/fa';
 import '../assets/css/comments.css';
 import { Link } from 'react-router-dom';
 import time_ago from '../utils/timeAgo';
@@ -31,7 +31,7 @@ class CommentItem extends Component {
         this.persistenceController = new PersistenceController();
     }
 
-    validateForm() {
+    validateForm = () => {
         let text = document.getElementById("text").value;
         if (text.trim() === "") {
             alert("Text is required for a reply");
@@ -40,14 +40,17 @@ class CommentItem extends Component {
         return true;
     }
 
-    replyComment = (event) => {
+    showFormPressed = () => {
+        this.setState({showForm: !this.state.showForm});
+    }
+
+    handleSubmit = (event) => {
         //prevent page refresh on submit
         event.preventDefault();
         if (this.validateForm()) {
             let form = event.target;
             //get all the form elements
             let formData = new FormData(form);
-            console.log("FORM DATA", formData);
             let params = formData;
             //iterate over the form elements and add them to the params object
             for (let entry of formData.entries()) {
@@ -56,7 +59,9 @@ class CommentItem extends Component {
             //post the new reply
             this.persistenceController.postRequest("/comments/"+this.state.comment.id+"/replies", params)
                 .then(response => {
-                    alert("Comment replied successfully");
+                    console.log("Reply submitted successfully!");
+                    this.state.replies.push(response);
+                    this.showFormPressed();
                 })
                 .catch(error => {
                     console.log("error", error);
@@ -64,45 +69,34 @@ class CommentItem extends Component {
         }
     }
 
-    upvoteComment = (event) => {
-        //prevent page refresh on submit
-        event.preventDefault();
-        //update the State
-        this.setState({upvoted: true, points: this.state.points+1})
-        //upvote the comment
-        this.persistenceController.postRequest("/users/"+process.env.HARDCODED_USER_ID+"/upvoteComment/"+this.state.comment.id, {})
-        .then(response => {
-            console.log(response)
-            alert("Comment upvoted successfully");
-        })
-        .catch(error => {
-            console.log("error", error);
-        });
-    }
-
-    downvoteComment = (event) => {
-        //prevent page refresh on submit
-        event.preventDefault();
-        //update the State
-        this.setState({upvoted: false, points: this.state.points-1})
-        //downvote the comment
-        this.persistenceController.postRequest("/users/"+process.env.HARDCODED_USER_ID+"/downvoteComment/"+this.state.comment.id, {})
-        .then(response => {
-            alert("Comment downvoted successfully");
-        })
-        .catch(error => {
-            console.log("error", error);
-        });
+    voteComment = () => {
+        if (this.state.upvoted) {
+            //Downvote
+            this.setState({upvoted: false, points: this.state.points-1});
+            //downvote the comment
+            this.persistenceController.postRequest("/users/downvoteComment/"+this.state.comment.id, {})
+            .then(response => {
+                console.log("Successfully downvoted!");
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
+        } else {
+            //Upvote
+            this.setState({upvoted: true, points: this.state.points+1});
+            //upvote the comment
+            this.persistenceController.postRequest("/users/upvoteComment/"+this.state.comment.id, {})
+            .then(response => {
+                console.log("Successfully upvoted!");
+            })
+            .catch(error => {
+                console.log("error", error);
+            });
+        }
     }
 
     render() {
         const { comment, replies, upvoted, points, showForm } = this.state;
-        
-        comment.createdAt = time_ago(comment.createdAt);
-
-        const showFormPressed = () => {
-            this.setState({showForm: !showForm});
-        }
 
         const heart_filling = () => {
             if (upvoted) return <FaHeart className='like_icon' alt='Downvote'/> 
@@ -114,44 +108,42 @@ class CommentItem extends Component {
                 <div className='comment'>
                     <div className='layoutRow'>  
                         <div className={'like'}>
-                            <a href={upvoted ? this.downvoteComment : this.upvoteComment}>
-                                <button className='like_btn' 
-                                    title={upvoted ? 'Downvote' : 'Upvote'} 
-                                    onClick={()=> upvoted 
-                                        ? this.setState({upvoted: false, points: this.state.points-1}) 
-                                        : this.setState({upvoted: true, points: this.state.points+1})}>
-                                    {heart_filling()}
-                                </button>
-                            </a>
+                            <button className='like_btn' 
+                                title={upvoted ? 'Downvote' : 'Upvote'} 
+                                onClick={this.voteComment}>
+                                {heart_filling()}
+                            </button>
                             <p>{points}</p>
                         </div>
                         <div className='details'>
                             <div className='inDetails1'>
                                 <h4><Link to={"/profile/"+comment.googleId}>{comment.username}</Link></h4>
-                                <p>{comment.createdAt}</p>
+                                <p>{time_ago(comment.createdAt)}</p>
                             </div>
                             <div className='inDetails2'>
                                 <p>{comment.text}</p>
-                                <button className='reply_btn' title='Reply' onClick={() => showFormPressed()}>
-                                    Reply <i class="fa-solid fa-reply" alt='View comments'></i>
+                                <button className='reply_btn' title='Reply' onClick={this.showFormPressed}>
+                                    Reply <FaReply alt='View comments'/>
                                 </button>
                             </div>
                         </div>
                     </div>
                     {showForm && (
                         <div className='container'>
-                            <form onSubmit = "this.replyComment; showFormPressed();">
+                            <form onSubmit = {this.handleSubmit}>
                                 <textarea name="text" id='text' placeholder='Write your reply'></textarea>
                                 <input type="submit" value="Submit"/>
                             </form>
                         </div>
                     )}
                 </div>
-                <ul class>
-                    {replies.map((rep) =>
-                    <li><CommentItem>{rep}</CommentItem></li>
-                    )}
-                </ul>
+                {this.props.showReplies && (
+                    <ul className='indexCom'>
+                        {replies.map((rep) =>
+                        <li><CommentItem>{rep}</CommentItem></li>
+                        )}
+                    </ul>
+                )}
             </div>
         );
     }
