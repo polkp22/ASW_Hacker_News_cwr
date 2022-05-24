@@ -33,7 +33,7 @@ class Comments extends Component {
 
     render() {
         const { isLoaded, comments } = this.state;
-        const page_title = this.props.session.logged_user === this.props.id ? "My Comments" : this.state.username+"'s Comments";
+        const page_title = "My Comments";
 
         if (!isLoaded) {
             return(

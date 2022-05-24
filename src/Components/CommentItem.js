@@ -140,7 +140,7 @@ class CommentItem extends Component {
                 {this.props.showReplies && (
                     <ul className='indexCom'>
                         {replies.map((rep) =>
-                        <li><CommentItem>{rep}</CommentItem></li>
+                        <li><CommentItem session={this.props.session} showReplies={this.props.showReplies}>{rep}</CommentItem></li>
                         )}
                     </ul>
                 )}
