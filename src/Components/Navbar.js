@@ -34,14 +34,14 @@ class Navbar extends Component {
                         <span className='tooltip'>HN Submissions</span>
                     </li>
                     <li>
-                        <Link to={'/submissions/user/'+this.props.user}>
+                        <Link to='/submissions/user'>
                         <RiMenuFill />
                             <span className='links_name'>My Submissions</span>
                         </Link>
                         <span className='tooltip'>My Submissions</span>
                     </li>
                     <li>
-                        <Link to={'/comments/'+this.props.user}>
+                        <Link to='/comments'>
                         <RiChat4Line />
                             <span className='links_name'>My Comments</span>
                         </Link>
@@ -64,7 +64,7 @@ class Navbar extends Component {
                 </ul>
                 <div className='profile_content'>
                     <div className='profile'>
-                        <Link to={'/profile'}>
+                        <Link to='/profile'>
                             <div className='profile_details'>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                                 <div className='name'>
@@ -73,7 +73,7 @@ class Navbar extends Component {
                             </div>
                         </Link>
                         <div className='logout'>
-                            <Link to={'/profile'}>
+                            <Link to='/profile'>
                                 <img src="https://avatars.githubusercontent.com/u/87144040?v=4" alt=""/>
                             </Link>
                             <span className='tooltip tooltipxxl'>Profile</span>
