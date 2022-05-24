@@ -24,7 +24,10 @@ class Profile extends Component {
     }
 
     loadProfilePage() {
-        this.persistenceController.getRequest("/users/"+this.props.id, {})
+        let id;
+        if (this.props.id) id = this.props.id;
+        else id = this.props.session.logged_user;
+        this.persistenceController.getRequest("/users/"+id, {})
             .then(response => {
                 response.createdAt = time_ago(response.createdAt);
                 this.setState({
