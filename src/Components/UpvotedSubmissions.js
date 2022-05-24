@@ -6,6 +6,7 @@ class UpvotedSubmissions extends React.Component {
     render() {
         return (
             <SubmissionPage
+                author = {this.props.id}
                 title = "My Upvoted Submissions"
                 data_endpoint = "/users/upvotedSubmissions"
             />
