@@ -18,11 +18,12 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<News/>} />
-              <Route path="/submissions/:id/" element={<SubmissionsParamWrapper/>} />
+              <Route path="/submissions/:id/" element={<SubmissionsParamWrapper/>} />z
               <Route path="/submissions/user/:id/" element={<UserSubmissionsParamWrapper/>} />
               <Route path="/comments/:id/" element={<CommentsParamWrapper/>} />
               <Route path="/upvotedSubmissions" element={<UpvotedSubmissions/>} />
               <Route path="/upvotedComments" element={<UpvotedComments/>} />
+              <Route path="/profile" element={<ProfileNoParamWrapper/>} />
               <Route path="/profile/:id/" element={<ProfileParamWrapper/>} />
             </Routes>
           </main>
@@ -44,6 +45,10 @@ function UserSubmissionsParamWrapper() {
 function CommentsParamWrapper() {
   let {id} = useParams();
   return <Comments session={session} id={id}/>;
+}
+
+function ProfileNoParamWrapper() {
+  return <Profile session={session} />;
 }
 
 function ProfileParamWrapper() {

@@ -16,17 +16,6 @@ class Comments extends Component {
 
     componentDidMount() {
         if (!this.state.isLoaded) {
-            /*this.persistenceController.getRequest("/comments/user/108072218470064233500", {})
-                .then(response => {
-                    this.setState({
-                        comments: response,
-                        isLoaded: true
-                    });
-                })
-                .catch(error => {
-                    console.log("error¿?", error);
-                });
-            */
             Promise.all([
                 this.persistenceController.getRequest('/users/'+this.props.id, {}),
                 this.persistenceController.getRequest('/comments/user/'+this.props.id, {})
