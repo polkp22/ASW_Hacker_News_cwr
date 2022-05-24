@@ -72,6 +72,7 @@ class SubmissionListItem extends React.Component {
                             <button title='View comments'>
                                 <h4>See comments</h4>
                                 <MdOutlineForum className='icon' alt='View comments'/>
+                                <p>{this.props.sub.comments}</p>
                             </button>
                         </Link>
                     </div>

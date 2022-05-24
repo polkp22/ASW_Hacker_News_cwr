@@ -7,7 +7,7 @@ class UpvotedSubmissions extends React.Component {
         return (
             <SubmissionPage
                 title = "My Upvoted Submissions"
-                data_endpoint = "/users/107232669716225452809/upvotedSubmissions"
+                data_endpoint = "/users/upvotedSubmissions"
             />
         );
     }
