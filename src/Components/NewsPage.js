@@ -168,9 +168,10 @@ class News extends React.Component {
                             <IoMdCloseCircleOutline />
                         </button>
                         <div className='formContainer'>
-                            <form onSubmit = {this.handleForm}>
+                            <h3>Write your new submission:</h3>
+                            <form className="submissionForm" onSubmit = {this.handleForm}>
                                 <div className="row">
-                                    <div className="col-25">
+                                    <div className="col-25 formTag">
                                         <label for="title">Title: *</label>
                                     </div>
                                     <div className="col-75">
@@ -178,7 +179,7 @@ class News extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-25">
+                                    <div className="col-25 formTag">
                                         <label for="url">Url:</label>
                                     </div>
                                     <div className="col-75">
@@ -186,7 +187,7 @@ class News extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-25">
+                                    <div className="col-25 formTag">
                                         <label for="text">Text:</label>
                                     </div>
                                     <div className="col-75">

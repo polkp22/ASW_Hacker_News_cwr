@@ -7,7 +7,12 @@
     align-items: center;
 }
 
-form {
+.formContainer h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.submissionForm {
     width: 80%;
     margin: 0 auto;
     padding: 0;
@@ -17,7 +22,7 @@ form {
     justify-content: center;
 }
 
-form .row {
+.submissionForm .row {
     width: 100%;
     margin: 0 0 10px 0;
     padding: 0;
@@ -26,16 +31,13 @@ form .row {
     justify-content: center;
 }
 
-form .col-25 {
-    width: 25%;
+.submissionForm .col-25 {
+    width: 100px;
     margin: 0 auto;
     padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-form .col-75 {
+.submissionForm .col-75 {
     width: 75%;
     margin: 0 auto;
     padding: 0;
@@ -44,8 +46,8 @@ form .col-75 {
     justify-content: center;
 }
 
-form .col-75 textarea,
-form .col-75 input {
+.submissionForm .col-75 textarea,
+.submissionForm .col-75 input {
     width: 100%;
     margin: 0 auto;
     padding: 0;
@@ -54,11 +56,21 @@ form .col-75 input {
     justify-content: center;
 }
 
-form .col-75 textarea {
+.submissionForm .col-75 textarea {
     max-height: 100px;
 }
 
-form #submitForm {
+.submissionForm .formTag {
+    text-align: left;
+}
+.submissionForm input[type="text"], .submissionForm textarea {
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid rgb(108, 179, 108);
+    border-radius: 12px;
+    background-color: #f8f8f8;
+}
+.submissionForm #submitForm {
     margin-top: 20px;
     background-color: #1b6f1bc7;
     color: #fff;
@@ -158,15 +170,18 @@ form #submitForm {
     align-self: center;
 }
 
-@media screen and (max-width: 500px) {
-    form .row {
+@media screen and (max-width: 750px) {
+    .submissionForm {
+        width: 100%;
+    }
+    .submissionForm .row {
         flex-direction: column;
         margin: 0 auto;
     }
-    form #submitForm {
+    .submissionForm #submitForm {
         margin: 10px 0 -20px 0;
     }
-    form .col-25 {
+    .submissionForm .col-25 {
         width: 75%;
         justify-content:start;
     }
