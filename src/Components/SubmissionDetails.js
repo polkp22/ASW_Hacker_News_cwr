@@ -1,7 +1,10 @@
 import React , {Component} from 'react';
 import PersistenceController from './Persistence.controller';
 import {FaHeart, FaRegHeart} from 'react-icons/fa';
-import '../assets/css/submissionDetails.css'
+import CommentItem from './CommentItem';
+import { Link } from 'react-router-dom';
+import '../assets/css/submissionDetails.css';
+import '../assets/css/comments.css';
 const time_ago = require('../utils/timeAgo');
 
 class SubmissionDetails extends Component {
@@ -14,8 +17,26 @@ class SubmissionDetails extends Component {
             submission: {},
             isLoaded: false,
             newComment: false,
+            comments: [],
+            upvoted: false,
+            points: 0
         };
         this.persistenceController = new PersistenceController();
+        this.handleVoteChange = (isVoted, id) => {
+            if (isVoted) {
+                this.persistenceController.postRequest('/users/downvoteSubmission/'+id, {}).catch(
+                    // Couldn't reach api endpoint. Undo changes
+                    this.setState({upvoted: true, points: this.state.points+1})
+                );
+                this.setState({upvoted: false, points: this.state.points-1})
+            } else {
+                this.persistenceController.postRequest('/users/upvoteSubmission/'+id, {}).catch(
+                    // Couldn't reach api endpoint. Undo changes
+                    this.setState({upvoted: false, points: this.state.points-1})
+                );
+                this.setState({upvoted: true, points: this.state.points+1})
+            }
+        }
     }
 
     componentDidMount() {
@@ -26,7 +47,10 @@ class SubmissionDetails extends Component {
                     this.setState({
                         id: response.id,
                         submission: response,
-                        isLoaded: true
+                        isLoaded: true,
+                        comments: response.comments,
+                        upvoted: response.upvoted,
+                        points: response.points
                     });
                 }).catch(error => {
                     console.log("Error loading submission " + this.props.id + ":", error);
@@ -35,7 +59,8 @@ class SubmissionDetails extends Component {
     }
 
     displayHeart(upvoted) {
-        if (!upvoted) return <FaHeart className='like_icon' alt='Downvote'/> 
+        console.log("upvoted: ", upvoted)
+        if (upvoted) return <FaHeart className='like_icon' alt='Downvote'/> 
         return <FaRegHeart className='like_icon' alt='Upvote'/>;
     }
 
@@ -67,15 +92,12 @@ class SubmissionDetails extends Component {
     handleCommentForm = (event) => {
         event.preventDefault();
         if (this.validateForm()) {
-            console.log("before");
             let params =  {
                 "text": document.getElementById("text").value
             }
-            console.log("after. Params: ", params, ". This state: ", this.state.id);
             //post the new reply
             this.persistenceController.postRequest("/submissions/"+this.state.id+"/comments", params)
                 .then(response => {
-                    console.log("HOLAA")
                     let addComment = this.state.submission;
                     addComment.comments.push(response);
                     this.setState({submission: addComment});
@@ -95,11 +117,17 @@ class SubmissionDetails extends Component {
                 <div className="submissionDetailsInfo">
                     <div>
                         <div className='heartAndNum'>
-                                <div className='heart'>
-                                    {this.displayHeart(this.state.submission.upvoted)}
+                                <div className='heart' onClick={this.handleUpvote}>
+                                    <button 
+                                        className='submission_like_btn' 
+                                        title={this.state.upvoted ? 'Downvote' : 'Upvote'} 
+                                        onClick={()=>this.handleVoteChange(this.state.upvoted, this.state.id)}>
+                                            {this.displayHeart(this.state.upvoted)}
+                                    </button>
+                                    
                                 </div>
                                 <div>
-                                    {this.state.submission.points}
+                                    {this.state.points}
                                 </div>
                         </div>
                         <div className='subInfo'>
@@ -109,7 +137,7 @@ class SubmissionDetails extends Component {
                             {this.displayText()}
                             {this.displayUrl()}
                             <div className='infoUser'>
-                                by <a href={`${this.state.submission.googleId}`}>{this.state.submission.username}</a> | {time_ago(this.state.submission.createdAt)}
+                                by <Link to={"/profile/"+this.state.submission.googleId}>{this.state.submission.username}</Link> | {time_ago(this.state.submission.createdAt)}
                             </div>
                         </div>
                     </div>
@@ -133,7 +161,12 @@ class SubmissionDetails extends Component {
                     )}
                 </div>
                 <div className="submissionDetailsComments">
-
+                    <h3>Comments</h3>
+                    <ul className='submissions-vertical-scroll'>
+                        {this.state.comments.map((com) =>
+                            <li><CommentItem session={this.props.session} showReplies={true}>{com}</CommentItem></li>
+                        )}
+                    </ul>
                 </div>
             </div>
             
