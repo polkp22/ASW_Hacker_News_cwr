@@ -19,7 +19,7 @@ React & Node JS & Express & MongoDB
 
 ## Hosted app
 
-[App - Hacker News](http://ec2-15-237-124-151.eu-west-3.compute.amazonaws.com:6000/)
+[App - Hacker News](http://ec2-35-180-137-52.eu-west-3.compute.amazonaws.com:6000/)
 
 ## API Folder
 
