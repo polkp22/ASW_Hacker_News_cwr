@@ -109,6 +109,10 @@ h3 {
     margin-top: 20px;
 }
 
+.submissionDetailsComments .indexCom {
+    padding-left: 30px;
+}
+
 .submission_like_btn {
     border: none;
     background-color: transparent;
