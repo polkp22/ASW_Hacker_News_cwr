@@ -38,7 +38,8 @@ class SubmissionPage extends React.Component {
                     this.setState({
                         username: user.username,
                         more: false,
-                        isLoaded: true
+                        isLoaded: true,
+                        submissions: []
                     });
                 }
             }).catch(error => {
