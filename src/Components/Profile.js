@@ -66,7 +66,7 @@ class Profile extends Component {
             if (entry[1] !== "") params[entry[0]] = entry[1];
         }
         //post the new submission
-        this.persistenceController.putRequest("/users/"+this.props.id, params)
+        this.persistenceController.putRequest("/users/"+((this.props.id !== undefined) ? this.props.id.id : this.props.session.logged_user), params)
             .then(response => {
                 this.setState({
                     info: response,
@@ -77,6 +77,7 @@ class Profile extends Component {
                     delay: response.delay,
                     id: response.googleId
                 });
+                alert("successfully updated")
             })
             .catch(error => {
                 console.log("error", error);
@@ -89,7 +90,6 @@ class Profile extends Component {
             return <div>Loading...</div>
         }
         else {
-            console.log("Info: ", this.state.info)
             const renderOption = (attrib) => {
                 let condition = "";
                 if (attrib === "showdead") condition = this.state.info.showdead;
@@ -118,8 +118,8 @@ class Profile extends Component {
                                 <div className='infoTag'>About:</div>
                                 <div className='infoValue'>
                                     <textarea name="about" rows="4" cols="49" 
-                                        value={this.state.about}
-                                        onChange={(e) => this.setState({about:e.target.value})}
+                                        defaultValue={this.state.about}
+                                        onChange={(event) => this.setState({about: event.target.value})}
                                     ></textarea>
                                 </div>
                             </div>
@@ -137,15 +137,15 @@ class Profile extends Component {
                             </div>
                             <div className='info'>
                                 <div className='infoTag'>Maxvisit:</div>
-                                <div className='infoValue'><input type="number" name="maxvisit" value={this.state.maxvisit} onChange={(e) => this.setState({maxvisit: e.target.value})}/></div>
+                                <div className='infoValue'><input type="number" name="maxvisit" defaultValue={this.state.maxvisit} onChange={(e) => this.setState({maxvisit: e.target.value})}/></div>
                             </div>
                             <div className='info'>
                                 <div className='infoTag'>Minaway:</div>
-                                <div className='infoValue'><input type="number" name="minaway" value={this.state.minaway} onChange={(e) => this.setState({minaway: e.target.value})}/></div>
+                                <div className='infoValue'><input type="number" name="minaway" defaultValue={this.state.minaway} onChange={(e) => this.setState({minaway: e.target.value})}/></div>
                             </div>
                             <div className='info'>
                                 <div className='infoTag'>Delay:</div>
-                                <div className='infoValue'><input type="number" name="delay" value={this.state.delay} onChange={(e) => this.setState({delay: e.target.value})}/></div>
+                                <div className='infoValue'><input type="number" name="delay" defaultValue={this.state.delay} onChange={(e) => this.setState({delay: e.target.value})}/></div>
                             </div>
                             <div className='profileButton'>
                                 <input type="submit" value="Update"/>
