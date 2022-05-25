@@ -8,7 +8,7 @@ import Comments from './Components/Comments';
 import UpvotedSubmissions from './Components/UpvotedSubmissions';
 import UpvotedComments from './Components/UpvotedComments';
 
-let session = {logged_user: "108072218470064233500"};
+const session = {logged_user: "108072218470064233500"};
 
 function App() {
   return (
@@ -18,12 +18,14 @@ function App() {
           <main>
             <Routes>
               <Route path="/" element={<News/>} />
-              <Route path="/submissions/:id/" element={<SubmissionsParamWrapper/>} />z
+              <Route path="/submissions/:id/" element={<SubmissionsParamWrapper/>} />
+              <Route path="/submissions/user" element={<Submissions session={session} id={session.logged_user}/>} />
               <Route path="/submissions/user/:id/" element={<UserSubmissionsParamWrapper/>} />
+              <Route path="/comments" element={<Comments session={session} id={session.logged_user}/>} />
               <Route path="/comments/:id/" element={<CommentsParamWrapper/>} />
-              <Route path="/upvotedSubmissions" element={<UpvotedSubmissions/>} />
-              <Route path="/profile" element={<ProfileNoParamWrapper/>} />
+              <Route path="/upvotedSubmissions" element={<UpvotedSubmissions id={session.logged_user}/>} />
               <Route path="/upvotedComments" element={<UpvotedCommentsParamWrapper/>} />
+              <Route path="/profile" element={<Profile session={session} />} />
               <Route path="/profile/:id/" element={<ProfileParamWrapper/>} />
             </Routes>
           </main>
@@ -45,10 +47,6 @@ function UserSubmissionsParamWrapper() {
 function CommentsParamWrapper() {
   let {id} = useParams();
   return <Comments session={session} id={id}/>;
-}
-
-function ProfileNoParamWrapper() {
-  return <Profile session={session} />;
 }
 function UpvotedCommentsParamWrapper() {
   let {id} = useParams();

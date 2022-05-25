@@ -24,7 +24,7 @@ class SubmissionPage extends React.Component {
             "limit=15&offset="+((this.state.page-1)*15);
         if (!this.state.isLoaded) {
             Promise.all([
-                this.persistenceController.getRequest('/users/'+this.props.author, {}),
+                this.persistenceController.getRequest('/users/'+ this.props.author, {}),
                 this.persistenceController.getRequest(endpoint, {})
             ]).then(([user, response]) => {
                 if (response.sub_page.length > 0) {

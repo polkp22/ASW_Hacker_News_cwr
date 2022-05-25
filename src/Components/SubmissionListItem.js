@@ -5,6 +5,7 @@ import {MdOutlineForum} from 'react-icons/md';
 import {BiLink} from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import time_ago from '../utils/timeAgo';
+import PersistenceController from './Persistence.controller';
 
 class SubmissionListItem extends React.Component {
     constructor(props) {
@@ -29,6 +30,22 @@ class SubmissionListItem extends React.Component {
             upvoted: props.sub.upvoted,
             points: props.sub.points
         }
+        this.persistenceController = new PersistenceController();
+        this.handleVoteChange = (isVoted, id) => {
+            if (isVoted) {
+                this.persistenceController.postRequest('/users/downvoteSubmission/'+id, {}).catch(
+                    // Couldn't reach api endpoint. Undo changes
+                    this.setState({upvoted: true, points: this.state.points+1})
+                );
+                this.setState({upvoted: false, points: this.state.points-1})
+            } else {
+                this.persistenceController.postRequest('/users/upvoteSubmission/'+id, {}).catch(
+                    // Couldn't reach api endpoint. Undo changes
+                    this.setState({upvoted: false, points: this.state.points-1})
+                );
+                this.setState({upvoted: true, points: this.state.points+1})
+            }
+        }
     }
 
     render() {
@@ -39,22 +56,18 @@ class SubmissionListItem extends React.Component {
             if (subUpvoted) return <FaHeart className='like_icon' alt='Downvote'/> 
             return <FaRegHeart className='like_icon' alt='Upvote'/>;
         };
-
+        
         return(
             <div className='submissionListItem'>
                 <div className='layoutContent'>
                     <div className='upperContent'>
                         <h4 className="subItemIdx">{this.props.list_index}.</h4>
                         <div className={'like'}>
-                            <a href={subUpvoted ? '#downvote' : '#upvote'}>
-                                <button className='like_btn' 
-                                    title={subUpvoted ? 'Downvote' : 'Upvote'} 
-                                    onClick={()=> subUpvoted 
-                                        ? this.setState({upvoted: false, points: this.state.points-1}) 
-                                        : this.setState({upvoted: true, points: this.state.points+1})}>
-                                    {heart_filling()}
-                                </button>
-                            </a>
+                            <button className='like_btn' 
+                                title={subUpvoted ? 'Downvote' : 'Upvote'} 
+                                onClick={()=>this.handleVoteChange(subUpvoted, this.props.sub.id)}>
+                                {heart_filling()}
+                            </button>
                             <p>{this.state.points}</p>
                         </div>
                         <div className='details'>
