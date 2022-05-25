@@ -20,9 +20,11 @@ class UpvotedComments extends Component {
                 this.persistenceController.getRequest('/users/'+this.props.id, {}),
                 this.persistenceController.getRequest('/users/upvotedComments', {})
             ]).then(([user, response]) => {
+                console.log("THE USER IS: ",user)
+                console.log("RESPONSE:  ", response.comment_list)
                 this.setState({
                     username: user.username,
-                    upvotedComments: response,
+                    upvotedComments: response.comment_list,
                     isLoaded: true
                 });
             }).catch(error => {
@@ -33,7 +35,7 @@ class UpvotedComments extends Component {
 
     render() {
         const { isLoaded, upvotedComments } = this.state;
-        const page_title = this.props.session.logged_user === this.props.id ? "My Upvoted Comments" : this.state.username+"'s Upvoted Comments";
+        const page_title = "My Upvoted Comments";
 
         if (!isLoaded) {
             return(
